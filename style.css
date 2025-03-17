@@ -1,0 +1,715 @@
+/* style.css */
+
+/* 1. Base Reset & Typography */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background: radial-gradient(circle, #23233d, #1a1a2e); /* Luxury gradient */
+    color: #333;
+    scroll-behavior: smooth;
+}
+
+/* Accent Colors */
+:root {
+    --accent-color: #6c63ff;   /* Pastel purple for buttons & highlights */
+    --accent-hover: #5b55d1;   /* Darker shade for hover states */
+    --card-bg: #fff;
+    --card-shadow: rgba(0, 0, 0, 0.08);
+}
+
+/* 2. Navbar */
+.navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: radial-gradient(circle, #23233d, #1a1a2e);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+.nav-container {
+    max-width: 1500px;
+    height: 64px;
+    margin: 0;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+.nav-links a {
+    color: #ddd;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+.nav-links a:hover {
+    color: #6c63ff;
+}
+
+/* 3. Hero Section */
+.hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Light gradient for hero area */
+    background: linear-gradient(135deg, #ececff 0%, #dcdff9 100%);
+    padding: 2rem 1rem;
+}
+
+.hero-content {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-img {
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border: 6px solid #fff;  /* white border ring */
+    transition: transform 0.3s ease;
+}
+
+.profile-img:hover {
+    transform: scale(1.05);
+}
+
+.hero-text {
+    flex: 1;
+    text-align: left;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+.hero-ctas {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-hero {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #fff;
+    background-color: var(--accent-color);
+    transition: background-color 0.3s ease;
+}
+
+.btn-hero:hover {
+    background-color: var(--accent-hover);
+}
+
+/* Outline variant */
+.btn-outline {
+    background-color: transparent;
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+}
+
+.btn-outline:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+/* Social Icons */
+.hero-socials {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.social-icon {
+    font-size: 1.5rem;
+    color: #333;
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    color: var(--accent-color);
+}
+
+/* 4. ABOUT Section (unchanged) */
+.about-lux {
+    background: none;
+    padding: 4rem 1rem;
+    margin-bottom: 1rem; /* reduce space below about */
+}
+
+.about-lux-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+.about-lux-text {
+    flex: 1;
+    color: #fff;
+}
+
+.about-lux-text h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.about-lux-text p {
+    line-height: 1.6;
+    color: #ccc;
+    font-size: 1rem;
+}
+
+.about-icons-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.icon-block {
+    text-align: center;
+    color: #ccc;
+}
+
+.icon-block i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent-color);
+}
+
+.icon-block h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.icon-block p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.about-lux-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.rotating-cartoon {
+    width: 500px;
+    height: auto;
+    object-fit: contain;
+    animation: rotate 12s linear infinite;
+    transform-style: preserve-3d;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+/* LANGUAGES SECTION (unchanged) */
+.languages-lux {
+    background: none;
+    padding: 1rem 1rem;
+    margin-top: 0rem;
+    margin-bottom: 2rem;
+}
+
+.languages-lux-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.languages-lux-container h2 {
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.languages-lux-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.lang-card-lux {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+
+    /* Lighter background than before (adjust alpha as needed) */
+    background: rgba(255, 255, 255, 0.15);
+
+    /* Slightly bigger padding */
+    padding: 1.2rem;
+
+    /* Slightly bigger border radius for a softer look */
+    border-radius: 8px;
+
+    /* Increase the card width */
+    width: 110px; /* was 90px */
+
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+/* Make the icon bigger */
+.lang-card-lux i {
+    font-size: 2.5rem; /* was 2rem */
+}
+
+/* Increase the text size a bit */
+.lang-card-lux span {
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem; /* was 0.9rem */
+}
+
+/* Override the default icon color for each language/tool */
+
+/* 1. C++ (approx. brand color) */
+.lang-card-lux i.fa-brain {
+    color: #00599C; /* Some communities use #004482 as well */
+}
+
+/* 2. Java */
+.lang-card-lux i.fa-java {
+    color: #007396;
+}
+
+/* 3. JavaScript */
+.lang-card-lux i.fa-js-square {
+    color: #F7DF1E;
+}
+
+/* 4. Python */
+.lang-card-lux i.fa-python {
+    color: #3776AB;
+}
+
+/* 5. Swift (using the Swift orange) */
+.lang-card-lux i.fa-apple {
+    color: #FA7343;
+}
+
+/* 6. SQL (no single official color, but #CC2927 is often used for MS SQL,
+   #4479A1 for MySQL, etc. Here’s an example: ) */
+.lang-card-lux i.fa-database {
+    color: #CC2927;
+}
+
+/* 7. Node.js */
+.lang-card-lux i.fa-node-js {
+    color: #339933;
+}
+
+/* 8. React */
+.lang-card-lux i.fa-react {
+    color: #61DAFB;
+}
+
+/* 9. MongoDB */
+.lang-card-lux i.fa-leaf {
+    color: #47A248;
+}
+
+
+.lang-card-lux span {
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+/* PROJECTS SECTION (Completely Different Design) */
+.projects-alt {
+    background: linear-gradient(135deg, #ececff 0%, #dcdff9 100%);
+    padding: 4rem 1rem;
+    margin-bottom: 2rem;
+}
+
+.projects-alt-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.projects-alt-container h2 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.projects-alt-row {
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+/* Extra vertical space between rows */
+.projects-alt-row + .projects-alt-row {
+    margin-top: 3rem;
+}/* Adjust as needed */
+.project-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensures all elements distribute evenly */
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 320px;
+    height: 100%; /* Ensures equal height */
+    text-align: left;
+}
+
+.project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.project-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.project-content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* Ensures consistent height for all cards */
+
+}
+
+.project-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.project-content p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 1.5rem; /* Adjust this value to increase space */
+}
+
+
+.tech-stack {
+    display: flex;
+    gap: 10px;
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+}
+
+.btn-project {
+    display: block;
+    padding: 0.6rem 1rem;
+    background: var(--accent-color);
+    border-radius: 6px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    margin-top: auto; /* Pushes button to the bottom */
+    width: 100%; /* Ensures uniform button width */
+}
+
+.btn-project:hover {
+    background: var(--accent-hover);
+}
+
+/* Ensure all cards stretch to match height */
+.projects-alt-row {
+    display: flex;
+    align-items: stretch; /* Makes all cards the same height */
+    gap: 3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+/* Responsive Design */
+@media (max-width: 992px) {
+    .projects-alt-row {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+/* CONTACT SECTION (Professional Glass Form) */
+.contact-lux {
+    background: none;
+    padding: 4rem 1rem;
+    margin-bottom: 2rem;
+}
+
+.contact-lux-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    color: #fff;
+}
+
+.contact-lux-container h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.contact-subtitle {
+    color: #ccc;
+    margin-bottom: 2rem;
+}
+
+/* The form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #999;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border: 2px solid var(--accent-color);
+}
+
+.btn-contact-submit {
+    align-self: flex-start;
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 0.7rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-contact-submit:hover {
+    background-color: var(--accent-hover);
+}
+
+/* Status message for success/fail */
+.form-status {
+    margin-top: 1rem;
+    font-weight: 600;
+}
+
+/* 7. Other Sections (Academic, Work, etc.) */
+.section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 1rem;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-heading h2 {
+    font-size: 2rem;
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.section-subtitle {
+    color: #777;
+    margin-top: 0.5rem;
+}
+
+.contact-center {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+/* Additional contact info row below the form */
+.contact-info-row {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.contact-info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.contact-info-item:hover {
+    color: var(--accent-color);
+}
+
+.contact-info-item i {
+    font-size: 1.2rem;
+}
+
+/* Accent link color */
+.link-accent {
+    color: var(--accent-color);
+}
+
+/* 8. Footer */
+.footer {
+    background: #0d0d14;
+    text-align: center;
+    padding: 1rem;
+    color: #999;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 9. Animations & Fade-In */
+.fade-in-onload {
+    opacity: 0;
+    animation: fadeIn 1.2s ease forwards;
+}
+
+.fade-in-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* 10. Responsive */
+@media (max-width: 992px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-text {
+        order: 2;
+        margin-top: 2rem;
+    }
+    .hero-image {
+        order: 1;
+    }
+
+    .about-lux-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .about-lux-text {
+        margin-bottom: 2rem;
+    }
+
+    .contact-form {
+        text-align: left; /* ensure label alignment on narrower screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Hide links on small screens if you want a hamburger approach */
+    }
+}

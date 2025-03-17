@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="React Weather App Project Page" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>React Weather App</title>
+
+  <!-- Google Font & Font Awesome -->
+  <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+          rel="stylesheet"
+  />
+  <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+
+  <style>
+    /* Base Reset & Font */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Montserrat", sans-serif;
+      background-color: #14142b;
+      color: #fff;
+    }
+    a {
+      text-decoration: none;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: radial-gradient(circle, #23233d, #1a1a2e);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 999;
+    }
+
+    .nav-container {
+      max-width: 1500px;
+      height: 64px;
+      margin: 0;
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+    }
+
+    .nav-logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--accent-color);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      color: #ddd;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: #6c63ff;
+    }
+
+
+    /* HERO SECTION */
+    .hero-section {
+      background: url("assets/image2.png") no-repeat center/cover;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+    /* Add blur effect to the background */
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      backdrop-filter: blur(70px); /* Slight blur effect */
+      z-index: -1;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(20, 20, 43, 0.7);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px; /* Increase max width for more spacing */
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between; /* Push items apart */
+      gap: 4rem; /* Increase gap between text and frame */
+    }
+
+    .hero-text {
+      flex: 1;
+      min-width: 300px;
+    }
+    .hero-text h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .hero-text p {
+      font-size: 1.1rem;
+      color: #ccc;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    .hero-btn {
+      display: inline-block;
+      background-color: #6c63ff;
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+    .hero-btn:hover {
+      background-color: #5b55d1;
+    }
+
+
+    /* Laptop Frame Container */
+    .laptop-container {
+      flex: 1;
+      min-width: 600px; /* Increased size */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Laptop Frame - Make it smaller */
+    .laptop-frame {
+      position: relative;
+      width: 800px; /* Reduce width */
+      height: 450px; /* Adjust height */
+      background: #000;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+      border: 12px solid #222;
+    }
+
+    /* Ensure the image fully covers the frame */
+    .laptop-screen {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+
+
+
+    .laptop-frame::before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 5px;
+      background: #444;
+      border-radius: 5px;
+    }
+
+    /* SECTION TITLES (Shared) */
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 3rem 0 2rem;
+    }
+
+    /* TECHNOLOGIES SECTION */
+    .tech-section {
+      padding: 3rem 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .tech-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .tech-item {
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(6px);
+      padding: 1.5rem;
+      border-radius: 8px;
+      width: 220px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    .tech-item i {
+      font-size: 2rem;
+      color: #6c63ff;
+      margin-bottom: 0.5rem;
+    }
+    .tech-item h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .tech-item p {
+      font-size: 0.95rem;
+      color: #ccc;
+      line-height: 1.4;
+    }
+    /* Override the default purple color for each technology icon with its real-world color */
+
+    /* 1) React => #61DAFB */
+    .tech-section .tech-grid .tech-item:nth-child(1) i {
+      color: #61dafb;
+    }
+
+    /* 2) OpenWeatherMap => #FFA500 (Orange tone often associated with weather/OWM) */
+    .tech-section .tech-grid .tech-item:nth-child(2) i {
+      color: #ffa500;
+    }
+
+    /* 3) Custom CSS => #264de4 (Typical CSS brand color) */
+    .tech-section .tech-grid .tech-item:nth-child(3) i {
+      color: #264de4;
+    }
+
+    /* 4) Weather Icons => #ffd700 (Golden color for icons) */
+    .tech-section .tech-grid .tech-item:nth-child(4) i {
+      color: #ffd700;
+    }
+
+    /* FEATURES SECTION */
+    .features-section {
+      background: #1a1a2e;
+      padding: 0.5rem 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .features-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .feature-card {
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(6px);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    .feature-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    .feature-card p {
+      font-size: 0.95rem;
+      color: #ccc;
+      line-height: 1.5;
+    }
+
+
+    /* FOOTER */
+    .footer {
+      background: #0d0d14;
+      text-align: center;
+      padding: 1rem;
+      color: #999;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="nav-container">
+    <div class="nav-logo">MyBrand</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#about-lux">About</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <!-- Link to Contact section -->
+        <li><a href="index.html#contact-lux">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero-section">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1>React Weather App</h1>
+      <p>
+        A ReactJS-based weather application that provides current conditions
+        and a 5-day forecast for any searched city. By leveraging the
+        OpenWeatherMap API, it delivers accurate data on temperature, humidity,
+        wind, and more—helping users plan their day with ease.
+      </p>
+      <a href="https://youtu.be/whgoxWaEzHk" class="hero-btn">Watch Video</a>
+      <a href="https://github.com/Mobinazargary/comp3123-LabTest2.git" class="hero-btn">Github Repo</a>
+    </div>
+    <div class="laptop-container">
+      <div class="laptop-frame">
+        <img
+                src="assets/Screenshot%202025-03-11%20at%2011.42.59%E2%80%AFPM.png"
+                alt="Weather App Screenshot"
+                class="laptop-screen"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+<!-- TECHNOLOGIES USED -->
+<section class="tech-section">
+  <h2 class="section-title">Technologies Used</h2>
+  <div class="tech-grid">
+    <div class="tech-item">
+      <i class="fab fa-react"></i>
+      <h4>React.js</h4>
+      <p>
+        Frontend framework for building dynamic, component-based user interfaces.
+      </p>
+    </div>
+    <div class="tech-item">
+      <i class="fas fa-cloud-sun-rain"></i>
+      <h4>OpenWeatherMap API</h4>
+      <p>
+        Fetching real-time weather data, including current conditions & forecasts.
+      </p>
+    </div>
+    <div class="tech-item">
+      <i class="fas fa-code"></i>
+      <h4>Custom CSS</h4>
+      <p>
+        Responsive styling for a seamless experience across various devices.
+      </p>
+    </div>
+    <div class="tech-item">
+      <i class="fas fa-icons"></i>
+      <h4>Weather Icons</h4>
+      <p>
+        Icon sets from OpenWeatherMap for visual representation of conditions.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- KEY FEATURES -->
+<section id="features" class="features-section">
+  <h2 class="section-title">Key Features</h2>
+  <div class="features-container">
+    <div class="feature-card">
+      <h3>Real-Time Weather</h3>
+      <p>
+        Fetches current weather data (temperature, humidity, wind, etc.)
+        for any city via the OpenWeatherMap API, ensuring accurate results.
+      </p>
+    </div>
+    <div class="feature-card">
+      <h3>City Search with Debounce</h3>
+      <p>
+        Users can type their city name, and a debounce function prevents
+        excessive API calls, ensuring smooth performance.
+      </p>
+    </div>
+    <div class="feature-card">
+      <h3>5-Day Forecast</h3>
+      <p>
+        Displays a multi-day outlook for upcoming weather conditions,
+        helping users plan ahead.
+      </p>
+    </div>
+    <div class="feature-card">
+      <h3>Responsive UI</h3>
+      <p>
+        Designed to adapt to different screen sizes, ensuring a seamless
+        experience on mobile, tablet, and desktop.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>&copy; <span id="year"></span> Mobina zargary. All rights reserved.</p>
+</footer>
+
+<!-- JavaScript for dynamic year -->
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

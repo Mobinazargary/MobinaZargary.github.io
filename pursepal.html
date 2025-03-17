@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="PursePal Project Details" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PursePal - Project Details</title>
+
+    <!-- Reuse the same main CSS for consistency -->
+    <link rel="stylesheet" href="pursepal.css" />
+
+    <!-- Google Font & Font Awesome (same as main) -->
+    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+            rel="stylesheet"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+</head>
+<body>
+<!-- Minimal Nav (optional) -->
+<header class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">MyBrand</div>
+        <nav>
+            <ul class="nav-links">
+                <!-- You can link back to your main site or other pages -->
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#contact-lux">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero / Mockup Section -->
+<section class="project-detail-hero">
+    <div class="project-detail-container">
+        <div class="project-detail-text">
+            <h1>PursePal</h1>
+            <p class="project-detail-subtitle">
+                An iOS expenses tracker application designed to help users manage their finances effectively.
+            </p>
+            <a href="#how-it-works" class="btn-hero">Watch How It Works</a>
+        </div>
+
+        <!-- Phone Mockup on the right -->
+        <div class="phone-frame">
+            <img src="assets/hero-illustration.png" alt="App Screenshot" />
+        </div>
+
+    </div>
+</section>
+
+<!-- Project Details Section -->
+<section class="project-details">
+    <div class="project-details-container">
+        <h2>Project Overview</h2>
+        <p>
+            PursePal is an iOS expenses tracker application designed to help users manage their finances effectively.
+            Utilizing cutting-edge technologies like SwiftUI and Firebase, the app offers a secure and dynamic platform
+            for real-time financial tracking and management.
+        </p>
+
+        <p>
+            This project’s main goal was to combine an intuitive UI with robust data handling.
+            Through thoughtful design iterations, we created a user-friendly interface that simplifies
+            daily expense logging while providing insightful analytics for budgeting.
+        </p>
+
+        <h3 id="how-it-works">How It Works</h3>
+        <ul>
+            <li><strong>SwiftUI & Firebase Integration:</strong> Real-time updates and secure data storage.</li>
+            <li><strong>Expense Categorization:</strong> Users can categorize expenses and visualize spending patterns.</li>
+            <li><strong>Notifications:</strong> Push alerts for upcoming bills or savings goals.</li>
+            <li><strong>Analytics & Reporting:</strong> Graphical summaries to monitor progress over time.</li>
+        </ul>
+
+        <h3>Key Features</h3>
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fas fa-lock"></i>
+                <h4>Secure Login</h4>
+                <p>Biometric authentication ensures only authorized users can access personal financial data.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-chart-line"></i>
+                <h4>Spending Insights</h4>
+                <p>Clear visual charts show monthly or weekly spending patterns at a glance.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-bell"></i>
+                <h4>Alerts & Notifications</h4>
+                <p>Push notifications for bills due, saving reminders, or suspicious transactions.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>&copy; <span id="year"></span> Mobina Zargary. All rights reserved.</p>
+</footer>
+
+<!-- Optional: Year script if you want it here, or you can embed your fade-in logic, etc. -->
+<script>
+    // Update footer year
+    const yearSpan = document.getElementById("year");
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+</script>
+</body>
+</html>

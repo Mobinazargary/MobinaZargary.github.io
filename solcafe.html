@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Sol Cafe & Lounge – Full Project Overview" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sol Cafe & Lounge</title>
+
+    <!-- Google Font & Font Awesome -->
+    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+            rel="stylesheet"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <style>
+        /***************************************************
+         * 1. Base Reset & Typography
+         ***************************************************/
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            font-family: "Montserrat", sans-serif;
+            background: radial-gradient(circle, #23233d, #1a1a2e);
+            color: #ccc;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --accent-color: #6c63ff; /* Pastel purple for highlights */
+            --accent-hover: #5b55d1; /* Darker shade on hover */
+            --card-bg: rgba(255,255,255,0.07);
+            --card-shadow: rgba(0,0,0,0.2);
+        }
+
+        /***************************************************
+         * 2. Navbar
+         ***************************************************/
+        .navbar {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: radial-gradient(circle, #23233d, #1a1a2e);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 999;
+        }
+        .nav-container {
+            max-width: 1400px;
+            height: 64px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-links a {
+            color: #ddd;
+            font-weight: 500;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /***************************************************
+         * 3. HERO SECTION (Luxury Gradient + Centered Text)
+         ***************************************************/
+        .hero-section {
+            position: relative;
+            width: 100%;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(
+                    135deg,
+                    rgba(26, 26, 46, 0.8),
+                    rgba(35, 35, 61, 0.8)
+            ),
+            url("assets/DALL·E 2025-03-16 15.41.36 - A stylish and modern café named 'Sol Cafe' with a warm, inviting ambiance. The exterior features large glass windows, a wooden sign with the café’s na.webp") center/cover no-repeat;
+            padding: 3rem 1rem;
+        }
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.2);
+            z-index: 0;
+        }
+        .hero-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .hero-container h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        .hero-container p {
+            font-size: 1.1rem;
+            color: #ddd;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        .btn-hero {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            color: #fff;
+            background-color: var(--accent-color);
+            transition: background-color 0.3s ease;
+        }
+        .btn-hero:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /***************************************************
+         * 4. OVERVIEW SECTION (Glass Cards + Horizontal Layout)
+         ***************************************************/
+        .overview-section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2rem 1rem;
+        }
+        .overview-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+        .overview-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .overview-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--card-shadow);
+            padding: 2rem;
+            color: #fff;
+        }
+        .overview-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        .overview-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #ddd;
+            margin-bottom: 1rem;
+        }
+        .overview-card ul {
+            margin-left: 1.5rem;
+            margin-top: 1rem;
+            color: #ccc;
+        }
+
+        /***************************************************
+         * 5. KEY BENEFITS (Split columns, tinted background)
+         ***************************************************/
+        .benefits-section {
+            background: linear-gradient(135deg, #1f1e31, #2c2b47);
+            padding: 4rem 1rem;
+            color: #fff;
+        }
+        .benefits-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+        .benefits-title {
+            width: 100%;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+        .benefits-col {
+            flex: 1;
+            min-width: 280px;
+            background: var(--card-bg);
+            backdrop-filter: blur(6px);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--card-shadow);
+            padding: 2rem;
+        }
+        .benefits-col p {
+            margin-bottom: 1rem;
+            color: #ddd;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /***************************************************
+         * 6. TECHNOLOGIES (Grid, brand color icons)
+         ***************************************************/
+        .tech-section {
+            background: #14142b;
+            padding: 4rem 1rem;
+            text-align: center;
+            color: #fff;
+        }
+        .tech-section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        .tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .tech-item {
+            background: var(--card-bg);
+            backdrop-filter: blur(6px);
+            padding: 1.5rem;
+            border-radius: 8px;
+            width: 220px;
+            text-align: center;
+            box-shadow: 0 4px 12px var(--card-shadow);
+            transition: transform 0.3s;
+        }
+        .tech-item:hover {
+            transform: translateY(-3px);
+        }
+        .tech-item i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .tech-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+        .tech-item p {
+            font-size: 0.95rem;
+            color: #ccc;
+            line-height: 1.4;
+        }
+
+        /***************************************************
+         * 7. FEATURES / MODULES (Glass columns)
+         ***************************************************/
+        .modules-section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2rem 1rem;
+        }
+        .modules-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+        .modules-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .module-card {
+            flex: 1;
+            min-width: 280px;
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--card-shadow);
+            padding: 2rem;
+            color: #fff;
+        }
+        .module-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            font-weight: 600;
+        }
+        .module-card ul {
+            list-style: disc;
+            margin-left: 1.5rem;
+            margin-top: 1rem;
+            color: #ddd;
+        }
+
+        /***************************************************
+         * 8. IMPACT SECTION (Dark gradient + single card)
+         ***************************************************/
+        .impact-section {
+            padding: 4rem 1rem;
+            background: linear-gradient(135deg, #201f35, #131225);
+            text-align: center;
+            color: #fff;
+        }
+        .impact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--card-shadow);
+        }
+        .impact-container h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+        .impact-container p {
+            font-size: 1rem;
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+        .impact-container ul {
+            list-style: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ddd;
+        }
+
+        /***************************************************
+         * 9. FOOTER
+         ***************************************************/
+        .footer {
+            background: #0d0d14;
+            text-align: center;
+            padding: 1rem;
+            color: #999;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /***************************************************
+         * 10. Responsive Adjustments
+         ***************************************************/
+        @media (max-width: 992px) {
+            .hero-container {
+                flex-direction: column;
+            }
+            .hero-container h1 {
+                font-size: 2rem;
+            }
+            .hero-container p {
+                font-size: 1rem;
+            }
+            .overview-container {
+                gap: 1rem;
+            }
+            .benefits-container {
+                flex-direction: column;
+            }
+            .tech-grid {
+                gap: 1rem;
+            }
+            .modules-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">MyBrand</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about-lux">About</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#contact-lux">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero-section">
+    <div class="hero-container">
+        <h1>Sol Cafe &amp; Lounge</h1>
+        <p>
+            A luxurious restaurant website with a powerful
+            management system that enhances customer service, event management,
+            and operational efficiency.
+        </p>
+        <a href="https://youtu.be/Avw8SRhBBgk" class="btn-hero">Watch Video</a>
+    </div>
+</section>
+
+<!-- OVERVIEW -->
+<section id="overview" class="overview-section">
+    <h2 class="overview-title">Sol Cafe &amp; Lounge – Full Project Overview</h2>
+    <div class="overview-container">
+        <div class="overview-card">
+            <p>
+                <strong>Sol Cafe &amp; Lounge</strong> is more than just a restaurant;
+                it's an exclusive nightlife experience combined with a powerful
+                management system that enhances customer service, event management,
+                and operational efficiency.
+            </p>
+            <p>
+                This page provides an in-depth look at the technology stack, features,
+                benefits, and security measures that make Sol Cafe &amp; Lounge an
+                innovative, high-end digital platform for both customers and
+                administrators.
+            </p>
+        </div>
+        <div class="overview-card">
+            <h3>Why Sol Cafe &amp; Lounge?</h3>
+            <ul>
+                <li>
+                    <strong>Customers</strong> – Offering a seamless way to book tables,
+                    reserve event nights, explore the menu, and receive instant
+                    confirmations.
+                </li>
+                <li>
+                    <strong>Managers/Admins</strong> – A complete restaurant management
+                    portal with features to approve reservations, manage events, update
+                    menus, and oversee the restaurant’s operations efficiently.
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- KEY BENEFITS -->
+<section class="benefits-section">
+    <h2 class="benefits-title">Key Benefits</h2>
+    <div class="benefits-container">
+        <div class="benefits-col">
+            <p><strong>Luxury Digital Presence</strong> – A visually stunning and
+                high-performance online platform to match the premium brand.</p>
+            <p><strong>Streamlined Reservations</strong> – Customers can book tables
+                online with instant confirmation, reducing errors and mismanagement.</p>
+            <p><strong>Efficient Event Management</strong> – Admins can schedule,
+                edit, and manage special events, ensuring a smooth experience.</p>
+        </div>
+        <div class="benefits-col">
+            <p><strong>Menu Management</strong> – The menu can be updated in real-time,
+                allowing the restaurant to introduce new seasonal items.</p>
+            <p><strong>User Authentication</strong> – Only authorized managers can
+                access sensitive data, ensuring security and control.</p>
+            <p><strong>Automated Notifications</strong> – Customers receive SMS
+                confirmations and reminders for reservations.</p>
+        </div>
+    </div>
+</section>
+
+<!-- TECHNOLOGIES -->
+<section class="tech-section">
+    <h2>Technologies Used in Sol Cafe &amp; Lounge</h2>
+    <div class="tech-grid">
+        <div class="tech-item">
+            <i class="fab fa-react" style="color:#61DBFB;"></i>
+            <h4>React.js</h4>
+            <p>Interactive &amp; dynamic UI for customers &amp; admin portal.</p>
+        </div>
+        <div class="tech-item">
+            <i class="fab fa-node-js" style="color:#689F63;"></i>
+            <h4>Node.js &amp; Express</h4>
+            <p>Fast, scalable backend &amp; API for reservations.</p>
+        </div>
+        <div class="tech-item">
+            <i class="fas fa-database" style="color:#4DB33D;"></i>
+            <h4>MongoDB</h4>
+            <p>Stores reservations, menus, &amp; event data.</p>
+        </div>
+        <div class="tech-item">
+            <i class="fab fa-js-square" style="color:#F7E018;"></i>
+            <h4>Axios &amp; React Router</h4>
+            <p>Client-side data fetching &amp; navigation.</p>
+        </div>
+        <div class="tech-item">
+            <i class="fab fa-stripe" style="color:#635BFF;"></i>
+            <h4>Stripe API</h4>
+            <p>Secure online payments for reservations &amp; events.</p>
+        </div>
+        <div class="tech-item">
+            <i class="fab fa-twilio" style="color:#F22F46;"></i>
+            <h4>Twilio API</h4>
+            <p>Sends SMS confirmations &amp; reminders.</p>
+        </div>
+        <div class="tech-item">
+            <i class="fas fa-user-shield" style="color:#999;"></i>
+            <h4>JWT &amp; Bcrypt</h4>
+            <p>Secure manager authentication &amp; password hashing.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES / MODULES -->
+<section class="modules-section">
+    <h2>Features</h2>
+    <div class="modules-container">
+        <div class="module-card">
+            <h3>1. Customer Features</h3>
+            <ul>
+                <li><strong>Online Table Reservations</strong> with instant SMS confirmations.</li>
+                <li><strong>Event Booking &amp; Management</strong> for VIP nights & private events.</li>
+                <li><strong>Dynamic Menu Browsing</strong> with real-time updates.</li>
+                <li><strong>Automated Notifications</strong> via Twilio (SMS) & email reminders.</li>
+            </ul>
+        </div>
+        <div class="module-card">
+            <h3>2. Admin Portal Features</h3>
+            <ul>
+                <li><strong>Manager Authentication</strong> with secure JWT login.</li>
+                <li><strong>Reservation Management</strong> – approve/decline bookings.</li>
+                <li><strong>Event Management</strong> – create, edit, or delete special events.</li>
+                <li><strong>Menu Management</strong> – add or remove items in real-time.</li>
+                <li><strong>Role-Based Access Control</strong> to protect sensitive data.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- IMPACT SECTION -->
+<section class="impact-section">
+    <div class="impact-container">
+        <h2>Business &amp; Customer Impact</h2>
+        <p>
+            <strong>Sol Cafe &amp; Lounge</strong> significantly enhances the dining
+            and nightlife experience by merging real-time reservations, advanced event
+            scheduling, and user-friendly menu updates. It provides:
+        </p>
+        <ul>
+            <li>
+                <strong>Customer Benefits:</strong> Hassle-free booking, secure event
+                reservations, instant confirmations, and real-time menu access.
+            </li>
+            <li>
+                <strong>Management Benefits:</strong> Eliminates reservation errors,
+                automates event scheduling, improves operational efficiency, and
+                prevents overbooking with robust admin controls.
+            </li>
+        </ul>
+        <p>
+            By combining modern web technologies, robust security, and an elegant UI,
+            Sol Cafe &amp; Lounge stands out as a complete solution for premium
+            restaurants looking to deliver a high-end, digitally-driven experience.
+        </p>
+    </div>
+</section>
+<!-- MEET THE TEAM SECTION -->
+<section class="team-section" style="
+  background: #1a1a2e;
+  padding: 2rem 1rem;
+  text-align: center;
+">
+    <h2 style="
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  ">
+        Meet the Team
+    </h2>
+    <p style="
+    font-size: 0.9rem;
+    color: #ccc;
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+    line-height: 1.4;
+  ">
+        This project was a collaborative effort by our talented team, each
+        contributing specialized skills to bring this platform to life.
+    </p>
+
+    <div class="team-container" style="
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  ">
+        <!-- Team Member 1 -->
+        <div class="team-card" style="
+      background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.12),
+            rgba(255, 255, 255, 0.06)
+          );
+      backdrop-filter: blur(6px);
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+      min-width: 120px;
+    ">
+            <p style="
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #fff;
+      ">
+                Mobina Zargary
+            </p>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div class="team-card" style="
+      background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.12),
+            rgba(255, 255, 255, 0.06)
+          );
+      backdrop-filter: blur(6px);
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+      min-width: 120px;
+    ">
+            <p style="
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #fff;
+      ">
+                Melina Behzadi Nezhad
+            </p>
+        </div>
+
+        <!-- Team Member 3 -->
+        <div class="team-card" style="
+      background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.12),
+            rgba(255, 255, 255, 0.06)
+          );
+      backdrop-filter: blur(6px);
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+      min-width: 120px;
+    ">
+            <p style="
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #fff;
+      ">
+                Oscar Piedrasanta Diaz
+            </p>
+        </div>
+
+        <!-- Team Member 4 -->
+        <div class="team-card" style="
+      background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.12),
+            rgba(255, 255, 255, 0.06)
+          );
+      backdrop-filter: blur(6px);
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+      min-width: 120px;
+    ">
+            <p style="
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #fff;
+      ">
+                Valeria Arce
+            </p>
+        </div>
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>&copy; <span id="year"></span> Mobina Zargary. All rights reserved.</p>
+</footer>
+
+<script>
+    // Dynamic year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

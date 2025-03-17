@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Professional UI/UX Portfolio" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Professional Portfolio</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Google Font -->
+    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+            rel="stylesheet"
+    />
+
+    <!-- Font Awesome (for GitHub & LinkedIn icons) -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">MyBrand</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about-lux">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <!-- Link to Contact section -->
+                <li><a href="#contact-lux">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO / WELCOME SECTION -->
+<section id="home" class="hero-section fade-in-onload">
+    <div class="hero-content">
+        <!-- Rounded Profile Image -->
+        <div class="hero-image">
+            <img
+                    src="assets/hero-illustration.png"
+                    alt="Profile"
+                    class="profile-img"
+            />
+        </div>
+
+        <!-- Text + CTA Buttons -->
+        <div class="hero-text">
+            <h1 class="hero-title">I’m Mobina Zargary</h1>
+            <p class="hero-subtitle">
+                UI/UX Designer & Software Developer<br />
+                Crafting elegant, user-focused solutions
+            </p>
+
+            <div class="hero-ctas">
+                <!-- Résumé CTA -->
+                <a href="assets/Mobina%20Zargary%20resume(8).pdf" target="_blank" class="btn-hero">
+                    View Résumé
+                </a>
+                <!-- Cover Letter CTA -->
+                <a href="assets/Cover-letter.pdf" target="_blank" class="btn-hero btn-outline">
+                    Cover Letter
+                </a>
+            </div>
+
+            <!-- Social Icons (GitHub & LinkedIn) -->
+            <div class="hero-socials">
+                <a
+                        href="https://github.com/Mobinazargary"
+                        target="_blank"
+                        class="social-icon"
+                        aria-label="GitHub"
+                >
+                    <i class="fab fa-github"></i>
+                </a>
+                <a
+                        href="https://www.linkedin.com/in/mobinazargary"
+                        target="_blank"
+                        class="social-icon"
+                        aria-label="LinkedIn"
+                >
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT SECTION (unchanged) -->
+<section id="about-lux" class="about-lux fade-in-scroll">
+    <div class="about-lux-container">
+        <div class="about-lux-text">
+            <h2>About Me</h2>
+            <p>
+                I’m Mobina Zargary, a <strong>UI/UX Designer & Software Developer</strong>
+                dedicated to blending modern aesthetics with robust code. My journey
+                began with a passion for creative problem-solving, and today I specialize
+                in crafting <em>visually stunning</em>, <em>user-friendly</em> solutions that
+                solve real-world problems. <br /><br />
+                By combining <strong>design thinking</strong>, user research, and advanced
+                development practices, I strive to create products that are not only
+                functional, but also delightful to use. I believe in pushing boundaries,
+                embracing continuous learning, and collaborating with diverse teams to shape
+                tomorrow’s digital experiences—one elegant solution at a time.
+            </p>
+
+            <!-- Icons row highlighting key attributes -->
+            <div class="about-icons-row">
+                <div class="icon-block">
+                    <i class="fas fa-paint-brush"></i>
+                    <h4>UI/UX Focus</h4>
+                    <p>Wireframing, prototyping, and user research to ensure engaging experiences.</p>
+                </div>
+                <div class="icon-block">
+                    <i class="fas fa-laptop-code"></i>
+                    <h4>Software Dev</h4>
+                    <p>Clean code, modern frameworks, and performance-minded solutions.</p>
+                </div>
+                <div class="icon-block">
+                    <i class="fas fa-users"></i>
+                    <h4>Collaboration</h4>
+                    <p>Open dialogue, teamwork, and adaptability for shared success.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right side rotating image -->
+        <div class="about-lux-image">
+            <img
+                    src="assets/Adobe%20Express%20-%20file.png"
+                    alt="Rotating Cartoon"
+                    class="rotating-cartoon"
+            />
+        </div>
+    </div>
+</section>
+
+<!-- LANGUAGES SECTION (unchanged) -->
+<section id="languages" class="languages-lux fade-in-scroll">
+    <div class="languages-lux-container">
+        <h2>Languages &amp; Tools</h2>
+        <div class="languages-lux-row">
+            <!-- Example icons for languages (replace with your actual icons/paths) -->
+            <div class="lang-card-lux">
+                <i class="fas fa-brain"></i>
+                <span>C++</span>
+            </div>
+            <div class="lang-card-lux">
+                <i class="fab fa-java"></i>
+                <span>Java</span>
+            </div>
+            <div class="lang-card-lux">
+                <i class="fab fa-js-square"></i>
+                <span>JavaScript</span>
+            </div>
+            <div class="lang-card-lux">
+                <i class="fab fa-python"></i>
+                <span>Python</span>
+            </div>
+            <div class="lang-card-lux">
+                <i class="fab fa-apple"></i>
+                <span>Swift</span>
+            </div>
+            <div class="lang-card-lux">
+                <i class="fas fa-database"></i>
+                <span>SQL</span>
+            </div>
+            <div class="lang-card-lux">
+                <i class="fab fa-node-js"></i>
+                <span>Node.js</span>
+            </div>
+            <div class="lang-card-lux">
+                <i class="fab fa-react"></i>
+                <span>React</span>
+            </div>
+            <div class="lang-card-lux">
+                <i class="fas fa-leaf"></i>
+                <span>MongoDB</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS SECTION (unchanged) -->
+<section id="projects" class="projects-alt fade-in-scroll">
+    <div class="projects-alt-container">
+        <h2>Projects</h2>
+        <div class="projects-alt-row">
+
+            <!-- First Row -->
+            <div class="project-card">
+                <img src="assets/DALL·E%202025-03-16%2015.49.38%20-%20A%20futuristic%20and%20luxurious%20branding%20image%20for%20'Sol%20Cafe%20&%20Lounge',%20featuring%20a%20high-tech%20restaurant%20interior%20with%20a%20purple%20and%20neon%20blue%20theme.%20The%20at.webp" alt="Sol Cafe & Lounge" class="project-img" />
+                <div class="project-content">
+                    <h3>Sol Cafe & Lounge</h3>
+                    <div class="tech-stack">
+                        <!-- Update icons to reflect your actual tech stack -->
+                        <i class="fab fa-react"></i>
+                        <i class="fab fa-node-js"></i>
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <p>
+                        A luxurious restaurant website with a powerful
+                        management system that enhances customer service, event management,
+                        and operational efficiency. Built using React, Node.js, MongoDB,
+                        and integrated APIs for payments and notifications.
+                    </p>
+                    <a href="solcafe.html" class="btn-project">View Project</a>
+                </div>
+            </div>
+
+            <div class="projects-alt-row">
+                <div class="project-card">
+                    <img src="assets/dine-track-index.webp" alt="DineTrack App" class="project-img" />
+                    <div class="project-content">
+                        <h3> DineTrack – Restaurant Guide</h3>
+                        <div class="tech-stack">
+                            <i class="fab fa-android"></i> <i class="fab fa-java"></i> <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <p>
+                            A smart restaurant tracking app that lets users discover, save, and
+                            manage their favorite dining spots with integrated Google Maps and
+                            SQLite for seamless data storage.
+                        </p>
+                        <a href="dinetrack.html" class="btn-project">View Project</a>
+                    </div>
+                </div>
+
+
+            <div class="project-card">
+                <img src="assets/weather-3.webp" alt="React Weather App" class="project-img" />
+                <div class="project-content">
+                    <h3> React Weather App</h3>
+                    <div class="tech-stack">
+                        <i class="fab fa-react"></i> <i class="fas fa-cloud"></i> <i class="fas fa-code"></i>
+                    </div>
+                    <p>
+                        A ReactJS-based weather application that provides real-time weather conditions
+                        and a 5-day forecast for any city.Powered by the OpenWeatherMap API to
+                        deliver accurate temperature, humidity, and wind data
+                    </p>
+                    <a href="weather.html" class="btn-project">View Project</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Second Row -->
+            <div class="project-card">
+                <img src="assets/journeyjet-index.webp" alt="JourneyJet App" class="project-img" />
+                <div class="project-content">
+                    <h3> JourneyJet – Travel Booking</h3>
+                    <div class="tech-stack">
+                        <i class="fab fa-microsoft"></i> <i class="fas fa-database"></i> <i class="fas fa-lock"></i>
+                    </div>
+                    <p>
+                        A comprehensive travel booking platform that allows users to book flights, hotels,
+                        and car rentals , Built with C# and MVC.NET Core.
+                    </p>
+                    <a href="journeyjet.html" class="btn-project">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="assets/event-index.webp" alt="Event Booking" class="project-img" />
+                <div class="project-content">
+                    <h3> Event Booking Platform</h3>
+                    <div class="tech-stack">
+                        <i class="fab fa-java"></i> <i class="fas fa-database"></i> <i class="fab fa-docker"></i>
+                    </div>
+                    <p>A microservices-based system for seamless event and venue reservations, featuring real-time availability, approvals, and secure authentication.</p>
+                    <a href="eventbooking.html" class="btn-project">View Project</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- CONTACT SECTION (Formspree + success/fail messages, plus contact info row) -->
+<section id="contact-lux" class="contact-lux fade-in-scroll">
+    <div class="contact-lux-container">
+        <h2>Contact</h2>
+        <p class="contact-subtitle">
+            Interested in collaborating or just want to say hi? Drop me a line below!
+        </p>
+
+        <form
+                id="contact-form"
+                class="contact-form"
+                action="https://formspree.io/f/xqapkzln"
+                method="POST"
+        >
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Your Full Name"
+                        required
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <!-- Using "_replyto" for Formspree -->
+                <input
+                        type="email"
+                        id="email"
+                        name="_replyto"
+                        placeholder="Your Email Address"
+                        required
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea
+                        id="message"
+                        name="message"
+                        rows="5"
+                        placeholder="Your Message..."
+                        required
+                ></textarea>
+            </div>
+
+            <!-- Hidden field to set a custom subject -->
+            <input
+                    type="hidden"
+                    name="_subject"
+                    value="New message from your portfolio!"
+            />
+
+            <button type="submit" class="btn-contact-submit">Send Message</button>
+        </form>
+
+        <!-- Where success/fail messages appear -->
+        <p id="form-status" class="form-status"></p>
+
+        <!-- Additional contact info row below form -->
+        <div class="contact-info-row">
+            <!-- Linkable Email -->
+            <a href="mailto:mszargary@gmail.com" class="contact-info-item" target="_blank">
+                <i class="fas fa-envelope"></i>
+                <span>mszargary@gmail.com</span>
+            </a>
+            <!-- LinkedIn Profile -->
+            <a
+                    href="https://www.linkedin.com/in/Mobinazargary"
+                    class="contact-info-item"
+                    target="_blank"
+            >
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn Profile</span>
+            </a>
+            <!-- Location -->
+            <div class="contact-info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Toronto, Ontario</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>&copy; <span id="year"></span> Mobina zargary. All rights reserved.</p>
+</footer>
+
+<!-- External JavaScript for fade-in, form submission messages, etc. -->
+<script src="script.js"></script>
+</body>
+</html>

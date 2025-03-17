@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Event Booking Platform – Microservices-based event & venue reservations" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Booking Platform</title>
+
+    <!-- Google Font & Font Awesome -->
+    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+            rel="stylesheet"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <style>
+        /* Base Reset & Font */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Montserrat", sans-serif;
+            background-color: #14142b;
+            color: #fff;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: radial-gradient(circle, #23233d, #1a1a2e);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        .nav-container {
+            max-width: 1500px;
+            height: 64px;
+            margin: 0;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-links a {
+            color: #ddd;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #6c63ff;
+        }
+
+
+        /* HERO SECTION (Luxurious/Professional) */
+        .hero-section {
+            /* Keep your hero background image here */
+            background: url("assets/event.webp") center/cover no-repeat, #1a1a2e;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(20, 20, 43, 0.6); /* Dark overlay */
+            z-index: 0;
+            /* Subtle fade-in animation */
+            animation: fadeOverlay 1s ease forwards;
+        }
+        @keyframes fadeOverlay {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 1rem;
+            display: flex;
+            flex-direction: column; /* Single column for a simpler look */
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Glassy, luxurious text block */
+        .hero-text-block {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+            max-width: 800px;
+            animation: slideUp 1s ease forwards;
+            transform: translateY(30px);
+            opacity: 0;
+        }
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .hero-text-block h1 {
+            font-size: 2.6rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            /* Subtle text shadow for a glowing effect */
+            text-shadow: 0 2px 5px rgba(108, 99, 255, 0.3);
+        }
+        .hero-icon {
+            font-size: 2.2rem;
+            color: #6c63ff;
+        }
+        .hero-text-block p {
+            font-size: 1.1rem;
+            color: #ddd;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        .hero-btns {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+        .btn-hero {
+            display: inline-block;
+            background-color: #6c63ff;
+            color: #fff;
+            padding: 0.9rem 1.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 12px rgba(108, 99, 255, 0.3);
+        }
+        .btn-hero:hover {
+            background-color: #5b55d1;
+            transform: translateY(-2px);
+        }
+
+        /* KEY FEATURES SECTION */
+        .features-section {
+            background: #1a1a2e;
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .features-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+        .features-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin: 0 auto;
+            max-width: 1000px;
+            text-align: left;
+        }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(6px);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        .feature-icon {
+            font-size: 1.8rem;
+            color: #6c63ff;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #ccc;
+            line-height: 1.5;
+        }
+
+        /* TECH SECTION */
+        .tech-section {
+            background: #14142b;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+        .tech-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+        .tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .tech-item {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(6px);
+            padding: 1.5rem;
+            border-radius: 8px;
+            width: 220px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        .tech-item i {
+            font-size: 2rem;
+            color: #6c63ff;
+            margin-bottom: 0.5rem;
+        }
+        .tech-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .tech-item p {
+            font-size: 0.95rem;
+            color: #ccc;
+            line-height: 1.4;
+        }
+        /* Override the default icon color for each tech-item in the Tech Stack */
+
+        /* 1) Java (Spring Boot) */
+        .tech-section .tech-grid .tech-item:nth-child(1) i {
+            color: #007396; /* Java brand-like color */
+        }
+
+        /* 2) PostgreSQL */
+        .tech-section .tech-grid .tech-item:nth-child(2) i {
+            color: #336791; /* PostgreSQL brand color */
+        }
+
+        /* 3) MongoDB */
+        .tech-section .tech-grid .tech-item:nth-child(3) i {
+            color: #47A248; /* MongoDB brand color */
+        }
+
+        /* 4) JWT & OAuth 2.0 */
+        .tech-section .tech-grid .tech-item:nth-child(4) i {
+            color: #915EFF; /* e.g. JWT brand-like color */
+        }
+
+        /* 5) Docker */
+        .tech-section .tech-grid .tech-item:nth-child(5) i {
+            color: #2496ED; /* Docker brand color */
+        }
+
+        /* 6) Microservices (generic) */
+        .tech-section .tech-grid .tech-item:nth-child(6) i {
+            color: #f56300; /* Example orange for "microservices" */
+        }
+
+
+        /* IMPACT SECTION */
+        .impact-section {
+            padding: 4rem 1rem;
+            background: linear-gradient(135deg, #201f35, #131225);
+            text-align: center;
+        }
+        .impact-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(8px);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .impact-container h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .impact-container p {
+            font-size: 1rem;
+            color: #ccc;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #0d0d14;
+            text-align: center;
+            padding: 1rem;
+            color: #999;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">MyBrand</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about-lux">About</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <!-- Link to Contact section -->
+                <li><a href="index.html#contact-lux">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<!-- HERO SECTION (Luxurious) -->
+<section class="hero-section">
+    <div class="hero-container">
+        <!-- GLASSMORPHIC TEXT BLOCK -->
+        <div class="hero-text-block">
+            <h1>
+                <i class="hero-icon fas fa-calendar-check"></i>
+                Event Booking Platform
+            </h1>
+            <p>
+                A microservices-based system designed for seamless event and venue reservations.
+                It enables users to book rooms, manage event approvals, and track availability
+                in real-time. Built with Spring Boot, Java, MongoDB, and PostgreSQL, the platform
+                ensures secure authentication, inter-service communication, and efficient event
+                coordination through a containerized Docker environment.
+            </p>
+            <div class="hero-btns">
+                <a href="https://github.com/oHastee/GBC_EventBooking-Group42.git" target="_blank" class="btn-hero">GitHub Repository</a>
+                <a href="https://youtu.be/L41vGAbqzgc" class="btn-hero">Watch Video</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- KEY FEATURES SECTION -->
+<section id="features" class="features-section">
+    <h2>Key Features</h2>
+    <div class="features-container">
+        <!-- 1. Role-Based Access Control -->
+        <div class="feature-card">
+            <i class="feature-icon fas fa-user-shield"></i>
+            <h3>Role-Based Access Control</h3>
+            <p>
+                Implements JWT & OAuth 2.0 authentication to manage different user roles
+                (students, staff, administrators). Ensures secure access permissions,
+                allowing only authorized users to create, approve, or manage event bookings.
+            </p>
+        </div>
+
+        <!-- 2. Real-Time Booking Management -->
+        <div class="feature-card">
+            <i class="feature-icon fas fa-clock"></i>
+            <h3>Real-Time Booking Management</h3>
+            <p>
+                Prevents double-booking conflicts by integrating a PostgreSQL and MongoDB
+                hybrid database system. Displays up-to-date availability of rooms and venues,
+                ensuring smooth event scheduling.
+            </p>
+        </div>
+
+        <!-- 3. Automated Approval Workflow -->
+        <div class="feature-card">
+            <i class="feature-icon fas fa-check-circle"></i>
+            <h3>Automated Approval Workflow</h3>
+            <p>
+                Events requiring approval are automatically forwarded to authorized personnel.
+                Approvers receive instant notifications, improving response time and
+                workflow efficiency.
+            </p>
+        </div>
+
+        <!-- 4. Scalable Microservices Architecture -->
+        <div class="feature-card">
+            <i class="feature-icon fas fa-network-wired"></i>
+            <h3>Scalable Microservices Architecture</h3>
+            <p>
+                Built as independent microservices (Event, Booking, User, Room, and Approval Services)
+                using Spring Boot. Ensures modularity, easy maintenance, and independent service scaling.
+            </p>
+        </div>
+
+        <!-- 5. Containerized Deployment with Docker -->
+        <div class="feature-card">
+            <i class="feature-icon fab fa-docker"></i>
+            <h3>Containerized Deployment with Docker</h3>
+            <p>
+                Uses Docker and Docker Compose for easy deployment and efficient resource management.
+                Enables seamless integration across multiple environments.
+            </p>
+        </div>
+
+        <!-- 6. RESTful APIs for Integration -->
+        <div class="feature-card">
+            <i class="feature-icon fas fa-plug"></i>
+            <h3>RESTful APIs for Seamless Integration</h3>
+            <p>
+                Provides well-structured REST APIs for inter-service communication.
+                Allows future expansion, such as integrating external calendar systems
+                or third-party payment gateways.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- TECH SECTION -->
+<section id="tech-stack" class="tech-section">
+    <h2>Tech Stack</h2>
+    <div class="tech-grid">
+        <div class="tech-item">
+            <i class="fab fa-java"></i>
+            <h4>Spring Boot (Java)</h4>
+            <p>Robust framework for building microservices and RESTful APIs.</p>
+        </div>
+        <div class="tech-item">
+            <i class="fas fa-database"></i>
+            <h4>PostgreSQL</h4>
+            <p>Relational database for managing structured event data.</p>
+        </div>
+        <div class="tech-item">
+            <i class="fas fa-database"></i>
+            <h4>MongoDB</h4>
+            <p>NoSQL storage for event logs and flexible data models.</p>
+        </div>
+        <div class="tech-item">
+            <i class="fas fa-shield-alt"></i>
+            <h4>JWT &amp; OAuth 2.0</h4>
+            <p>Secures authentication &amp; role-based access control.</p>
+        </div>
+        <div class="tech-item">
+            <i class="fab fa-docker"></i>
+            <h4>Docker</h4>
+            <p>Containerized deployment for easy scaling &amp; resource management.</p>
+        </div>
+        <div class="tech-item">
+            <i class="fas fa-code-branch"></i>
+            <h4>Microservices</h4>
+            <p>Independent services for events, booking, room, user, &amp; approvals.</p>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECT IMPACT SECTION -->
+<section class="impact-section">
+    <div class="impact-container">
+        <h2>Project Impact</h2>
+        <p>
+            The Event Booking Platform streamlines event and venue reservations by automating approvals
+            and preventing double-booking. It reduces manual coordination by 50%, enhances security
+            with role-based authentication, and ensures scalability through microservices and
+            containerized deployment. Designed for efficiency, it offers a seamless booking experience
+            while allowing future integrations like calendar sync and payment processing.
+        </p>
+    </div>
+</section>
+<!-- MEET THE TEAM SECTION -->
+<section class="team-section" style="
+  background: #1a1a2e;
+  padding: 2rem 1rem;
+  text-align: center;
+">
+    <h2 style="
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  ">
+        Meet the Team
+    </h2>
+    <p style="
+    font-size: 0.9rem;
+    color: #ccc;
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+    line-height: 1.4;
+  ">
+        This project was a collaborative effort by our talented team, each
+        contributing specialized skills to bring this platform to life.
+    </p>
+
+    <div class="team-container" style="
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  ">
+        <!-- Team Member 1 -->
+        <div class="team-card" style="
+      background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.12),
+            rgba(255, 255, 255, 0.06)
+          );
+      backdrop-filter: blur(6px);
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+      min-width: 120px;
+    ">
+            <p style="
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #fff;
+      ">
+                Mobina Zargary
+            </p>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div class="team-card" style="
+      background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.12),
+            rgba(255, 255, 255, 0.06)
+          );
+      backdrop-filter: blur(6px);
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+      min-width: 120px;
+    ">
+            <p style="
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #fff;
+      ">
+                Melina Behzadi Nezhad
+            </p>
+        </div>
+
+        <!-- Team Member 3 -->
+        <div class="team-card" style="
+      background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.12),
+            rgba(255, 255, 255, 0.06)
+          );
+      backdrop-filter: blur(6px);
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+      min-width: 120px;
+    ">
+            <p style="
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #fff;
+      ">
+                Oscar Piedrasanta Diaz
+            </p>
+        </div>
+
+        <!-- Team Member 4 -->
+        <div class="team-card" style="
+      background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.12),
+            rgba(255, 255, 255, 0.06)
+          );
+      backdrop-filter: blur(6px);
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+      min-width: 120px;
+    ">
+            <p style="
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #fff;
+      ">
+                Valeria Arce
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>&copy; <span id="year"></span> Mobina zargary. All rights reserved.</p>
+</footer>
+
+<script>
+    // Dynamic year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

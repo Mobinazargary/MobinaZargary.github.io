@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Chat App – Group & Private Messaging" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat App Project</title>
+
+    <!-- Google Font & Font Awesome -->
+    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+            rel="stylesheet"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <style>
+        /* Base Reset & Font */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Montserrat", sans-serif;
+            background-color: #14142b;
+            color: #fff;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: radial-gradient(circle, #23233d, #1a1a2e);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        .nav-container {
+            max-width: 1500px;
+            height: 64px;
+            margin: 0;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-links a {
+            color: #ddd;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #6c63ff;
+        }
+
+
+        /* HERO SECTION */
+        .hero-section {
+            /* Add your hero background image here */
+            background: url("assets/image.png") no-repeat center/cover, #1a1a2e;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 1rem;
+        }
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(20, 20, 43, 0.6);
+            z-index: 0;
+        }
+        .hero-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* HERO TEXT BLOCK */
+        .hero-text-block {
+            flex: 1;
+            min-width: 300px;
+        }
+        .hero-text-block h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center; /* So text & icon align nicely */
+        }
+        /* Chat icon at beginning of hero title */
+        .hero-icon {
+            width: 40px;  /* Adjust size as needed */
+            height: auto;
+            margin-right: 0.8rem;
+            vertical-align: middle;
+        }
+        .hero-text-block p {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+        .btn-hero {
+            display: inline-block;
+            background-color: #6c63ff;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        .btn-hero:hover {
+            background-color: #5b55d1;
+        }
+
+        /* MOCKUP SLIDER CONTAINER */
+        .mockup-slider {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* Laptop Frame */
+        .laptop-frame {
+            width: 450px;
+            height: 280px;
+            background: #000;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            border: 12px solid #222;
+            position: relative;
+        }
+        .laptop-frame::before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 5px;
+            background: #444;
+            border-radius: 5px;
+            z-index: 2;
+        }
+        /* Slides Container */
+        .slides-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Arrows */
+        .arrow-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            border: none;
+            font-size: 1.2rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+            z-index: 3;
+        }
+        .arrow-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .prev-btn {
+            left: -20px;
+        }
+        .next-btn {
+            right: -20px;
+        }
+
+        /* Dot Pagination */
+        .slider-dots {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            z-index: 3;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #555;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .dot.active-dot {
+            background: #fff;
+        }
+
+        /* TECHNOLOGIES SECTION */
+        .tech-section {
+            background: #14142b;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+        .tech-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+        .tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .tech-item {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(6px);
+            padding: 1.5rem;
+            border-radius: 8px;
+            width: 220px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        .tech-item i {
+            font-size: 2rem;
+            color: #6c63ff;
+            margin-bottom: 0.5rem;
+        }
+        .tech-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .tech-item p {
+            font-size: 0.95rem;
+            color: #ccc;
+            line-height: 1.4;
+        }
+
+        /* KEY FEATURES SECTION (with icons) */
+        .features-section {
+            background: #1a1a2e;
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .features-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+        .features-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin: 0 auto;
+            max-width: 1000px;
+            text-align: left;
+        }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(6px);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        .feature-icon {
+            font-size: 1.8rem;
+            color: #6c63ff;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #ccc;
+            line-height: 1.5;
+        }
+
+        /* PROJECT IMPACT SECTION */
+        .impact-section {
+            padding: 4rem 1rem;
+            background: linear-gradient(135deg, #201f35, #131225);
+            text-align: center;
+        }
+        .impact-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(8px);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .impact-container h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .impact-container p {
+            font-size: 1rem;
+            color: #ccc;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #0d0d14;
+            text-align: center;
+            padding: 1rem;
+            color: #999;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">MyBrand</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about-lux">About</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <!-- Link to Contact section -->
+                <li><a href="index.html#contact-lux">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO SECTION with mockup slider -->
+<section class="hero-section">
+    <div class="hero-container">
+        <!-- LEFT: TEXT BLOCK -->
+        <div class="hero-text-block">
+            <h1>
+                <!-- Icon at the beginning of the title -->
+
+                Chat App – Group &amp; Private Messaging
+            </h1>
+            <p>
+                A real-time chat application built with Node.js, Express, Socket.io,
+                and MongoDB. It supports group chat rooms, private messaging,
+                user authentication, and message history—all in a simple, clean UI.
+            </p>
+            <a href="#features" class="btn-hero">Learn More</a>
+        </div>
+
+        <!-- RIGHT: Mockup Slider -->
+        <div class="mockup-slider">
+            <div class="laptop-frame">
+                <div class="slides-container">
+                    <!-- Slide 1 -->
+                    <div class="slide active">
+                        <img src="assets/chat-5.jpg" alt="Chat App - Signup" />
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="slide">
+                        <img src="assets/chat-login.png" alt="Chat App - Login" />
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="slide">
+                        <img src="assets/chat-room.png" alt="Chat App - Room Selection" />
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="slide">
+                        <img src="assets/chat-group.png" alt="Chat App - Group Chat" />
+                    </div>
+                    <!-- Slide 5 -->
+                    <div class="slide">
+                        <img src="assets/chat-private.png" alt="Chat App - Private Chat" />
+                    </div>
+                </div>
+
+                <!-- Dot Pagination -->
+                <div class="slider-dots">
+                    <span class="dot active-dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+
+                <!-- Arrows -->
+                <button class="arrow-btn prev-btn">&lt;</button>
+                <button class="arrow-btn next-btn">&gt;</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TECHNOLOGIES SECTION -->
+<section id="technologies" class="tech-section">
+    <h2>Technologies Used</h2>
+    <div class="tech-grid">
+        <div class="tech-item">
+            <i class="fab fa-node-js"></i>
+            <h4>Node.js &amp; Express</h4>
+            <p>Server-side logic &amp; routing for real-time messaging.</p>
+        </div>
+        <div class="tech-item">
+            <i class="fas fa-comments"></i>
+            <h4>Socket.io</h4>
+            <p>Real-time bidirectional communication between client &amp; server.</p>
+        </div>
+        <div class="tech-item">
+            <i class="fas fa-database"></i>
+            <h4>MongoDB</h4>
+            <p>Storing user accounts, messages, and chat history.</p>
+        </div>
+        <div class="tech-item">
+            <i class="fab fa-html5"></i>
+            <h4>HTML/CSS/JS</h4>
+            <p>Front-end interface with a clean, user-friendly design.</p>
+        </div>
+    </div>
+</section>
+
+<!-- KEY FEATURES SECTION (with icons) -->
+<section id="features" class="features-section">
+    <h2>Key Features</h2>
+    <div class="features-container">
+        <div class="feature-card">
+            <i class="feature-icon fas fa-users"></i>
+            <h3>Group Chat Rooms</h3>
+            <p>
+                Create or join chat rooms for real-time group messaging.
+                Messages are stored in MongoDB, so they persist across sessions.
+            </p>
+        </div>
+        <div class="feature-card">
+            <i class="feature-icon fas fa-user-shield"></i>
+            <h3>Private Messaging</h3>
+            <p>
+                Directly message any user. Even if they’re offline, messages are
+                saved and loaded when the chat is reopened.
+            </p>
+        </div>
+        <div class="feature-card">
+            <i class="feature-icon fas fa-lock"></i>
+            <h3>User Authentication</h3>
+            <p>
+                Secure signup and login system with sessions.
+                Manage your account details and log out anytime.
+            </p>
+        </div>
+        <div class="feature-card">
+            <i class="feature-icon fas fa-comment-dots"></i>
+            <h3>Typing Indicators</h3>
+            <p>
+                Instantly see when other users are typing in the same room,
+                providing a more interactive chat experience.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECT IMPACT SECTION -->
+<section class="impact-section">
+    <div class="impact-container">
+        <h2>Project Impact</h2>
+        <p>
+            By integrating Node.js, Socket.io, and MongoDB, this Chat App
+            delivers robust real-time messaging for group or private chats.
+            Its user-friendly UI and secure authentication system
+            make it ideal for quick communication among teams, friends, or communities.
+            The persistent message storage ensures no conversation is ever lost,
+            even if users log out or disconnect.
+        </p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>&copy; <span id="year"></span> [Your Name]. All rights reserved.</p>
+</footer>
+
+<!-- JavaScript for Slider -->
+<script>
+    // Dynamic year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Slider logic
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    let currentSlide = 0;
+
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+
+    function showSlide(index) {
+        // Update slides
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            if (i === index) {
+                slide.classList.add('active');
+            }
+        });
+        // Update dots
+        dots.forEach((dot, i) => {
+            dot.classList.remove('active-dot');
+            if (i === index) {
+                dot.classList.add('active-dot');
+            }
+        });
+    }
+
+    // Next/Prev arrow logic
+    prevBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    });
+    nextBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    });
+
+    // Dot clicks
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            currentSlide = i;
+            showSlide(currentSlide);
+        });
+    });
+</script>
+</body>
+</html>

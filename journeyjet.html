@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="JourneyJet – Flights, Hotels, and Car Rentals" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JourneyJet – Travel Booking Platform</title>
+
+    <!-- Google Font & Font Awesome -->
+    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+            rel="stylesheet"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <style>
+        /* Base Reset & Typography */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Montserrat", sans-serif;
+            background: #14142b;
+            color: #fff;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: radial-gradient(circle, #23233d, #1a1a2e);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        .nav-container {
+            max-width: 1500px;
+            height: 64px;
+            margin: 0;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-links a {
+            color: #ddd;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #6c63ff;
+        }
+
+        /* HERO SECTION - background + text only */
+        .hero-journey {
+            position: relative;
+            padding: 6rem 1rem;
+            overflow: hidden;
+            /* Use your travel-themed background image path below */
+            background: url("assets/DALL·E 2025-03-11 21.33.58 - A beautiful travel-themed background with a blend of famous landmarks like the Eiffel Tower, Colosseum, Big Ben, and tropical palm trees. The scene sh.webp") no-repeat center center/cover;
+            text-align: center;
+        }
+        .hero-journey-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            position: relative;
+        }
+        .journey-text-glass {
+            background: rgba(0, 0, 0, 0.5); /* dark overlay for text readability */
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            padding: 2rem;
+            max-width: 550px;
+        }
+        .journey-text-glass h1 {
+            font-size: 2.4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .journey-text-glass p {
+            font-size: 1rem;
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+        .btn-watch {
+            display: inline-block;
+            background: #6c63ff;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .btn-watch:hover {
+            background: #5b55d1;
+        }
+
+        /* TECHNOLOGIES USED - angled image on left, 2-col grid for tech items */
+        .technologies-section {
+            padding: 4rem 1rem;
+            background: #1a1a2e;
+            text-align: center;
+        }
+        .technologies-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            width: 100%;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        /* Tech row: left image + right grid */
+        .tech-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem; /* more space */
+            flex-wrap: wrap; /* responsive */
+        }
+        /* Left side: angled image from the RIGHT side by default */
+        .tech-image-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            perspective: 1200px; /* for 3D effect */
+        }
+        .angled-tech-image {
+            width: 700px; /* adjust as you like for “very bigger” */
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+
+            transform: rotateY(25deg); /* angled from the RIGHT side */
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+        }
+        .angled-tech-image:hover {
+            transform: rotateY(0deg);
+        }
+        /* Right side: 2-col grid of smaller containers */
+        .tech-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns */
+            gap: 2rem;
+            justify-items: center;
+        }
+        .tech-item {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(6px);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+
+            /* smaller container size */
+            min-width: 140px;
+            max-width: 200px;
+
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .tech-item:hover {
+            transform: translateY(-5px);
+        }
+        .tech-item i {
+            font-size: 2rem;
+            color: #6c63ff;
+            margin-bottom: 0.5rem;
+        }
+        tech-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #fff; /* Title text color */
+        }
+        .tech-item p {
+            font-size: 0.95rem;
+            color: #ccc;
+            line-height: 1.4;
+        }
+        /* Override the default purple color for each technology icon with real-world brand-like colors */
+
+        /* 1) C# */
+        .tech-item:nth-child(1) i {
+            color: #68217A; /* or #512bd4, etc. */
+        }
+        /* 2) MVC.NET Core icon */
+        .tech-item:nth-child(2) i {
+            color: #512bd4; /* .NET brand color */
+        }
+        /* 3) MVC.NET Identity icon */
+        .tech-item:nth-child(3) i {
+            color: #5c2d91; /* Another .NET brand shade */
+        }
+        /* 4) VS Code icon */
+        .tech-item:nth-child(4) i {
+            color: #007ACC; /* VS Code brand color */
+        }
+
+
+
+        /* Responsive for the tech row */
+        @media (max-width: 992px) {
+            .tech-row {
+                flex-direction: column;
+            }
+            .angled-tech-image {
+                width: 300px; /* narrower on smaller screens */
+                margin-bottom: 2rem;
+                transform: rotateY(25deg);
+            }
+            .angled-tech-image:hover {
+                transform: rotateY(0deg);
+            }
+            .tech-grid {
+                grid-template-columns: 1fr; /* single column on narrower screens */
+            }
+        }
+
+        /* KEY FEATURES - Vertical Row Style */
+        .modern-features-section {
+            position: relative;
+            padding: 2rem 1rem;
+            background: #14142b;
+        }
+        .modern-features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .modern-features-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .feature-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .feature-icon-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 60px;
+        }
+        .feature-icon-circle {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(8px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .feature-icon-circle i {
+            font-size: 1.5rem;
+            color: #6c63ff;
+        }
+        .feature-line {
+            width: 2px;
+            flex: 1;
+            background: #444;
+            margin-top: 1rem;
+        }
+        .feature-content {
+            flex: 1;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(6px);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .feature-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .feature-content p {
+            font-size: 0.95rem;
+            color: #ccc;
+            line-height: 1.5;
+        }
+        @media (max-width: 768px) {
+            .feature-row {
+                flex-direction: row;
+                gap: 1rem;
+            }
+            .feature-icon-circle {
+                margin-bottom: 1rem;
+            }
+            .feature-line {
+                display: none; /* hide vertical line on small screens */
+            }
+        }
+
+        /* (OPTIONAL) SYSTEM ARCHITECTURE & SECURITY */
+        .system-architecture {
+            padding: 2rem 1rem;
+            background: #1a1a2e;
+        }
+        .architecture-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .architecture-container h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .architecture-text {
+            margin-bottom: 2rem;
+        }
+        .architecture-text h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #6c63ff;
+        }
+        .architecture-text p {
+            font-size: 0.95rem;
+            color: #ccc;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        /* PROJECT IMPACT - Gradient + Card */
+        .modern-impact-section {
+            padding: 4rem 1rem;
+            background: linear-gradient(135deg, #201f35, #131225);
+            text-align: center;
+        }
+        .modern-impact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .modern-impact-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+        .modern-impact-content {
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(8px);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .modern-impact-content p {
+            font-size: 1rem;
+            color: #ccc;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0d0d14;
+            text-align: center;
+            padding: 1rem;
+            color: #999;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">MyBrand</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about-lux">About</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <!-- Link to Contact section -->
+                <li><a href="index.html#contact-lux">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO SECTION - text only, background behind it -->
+<section class="hero-journey">
+    <div class="hero-journey-content">
+        <div class="journey-text-glass">
+            <h1>Welcome to JourneyJet!</h1>
+            <p>
+                JourneyJet is your one-stop destination for booking and managing flights,
+                hotels, and car rentals. With an intuitive interface and powerful management
+                tools, it simplifies travel planning and boosts operational efficiency for
+                both users and service providers.
+            </p>
+            <a href="https://youtu.be/Wk84aqOn9PY" class="btn-watch">Watch How It Works</a>
+            <a href="https://github.com/Mobinazargary/Booking-Website-JourneyJet-.git" class="btn-watch">Github Repo</a>
+        </div>
+    </div>
+</section>
+
+<!-- TECHNOLOGIES USED - bigger angled image on left, smaller items on right in a 2-col grid -->
+<section class="technologies-section">
+    <div class="technologies-container">
+        <h2 class="section-title">Technologies Used</h2>
+
+        <div class="tech-row">
+            <!-- Left: angled image from the RIGHT side, bigger size -->
+            <div class="tech-image-wrapper">
+                <img
+                        class="angled-tech-image"
+                        src="assets/IMG_6382.jpg"
+                        alt="JourneyJet Screenshot"
+                        onmouseover="this.style.transform='rotateY(0deg)';"
+                        onmouseout="this.style.transform='rotateY(25deg)';"
+                />
+            </div>
+
+            <!-- Right: 2-col grid of smaller tech items -->
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <i class="fas fa-code"></i>
+                    <h4>C#</h4>
+                    <p>Robust, object-oriented language driving backend logic.</p>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-laptop-code"></i>
+                    <h4>MVC.NET Core</h4>
+                    <p>Ensures clear separation of concerns and efficient request handling.</p>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-user-shield"></i>
+                    <h4>MVC.NET Identity</h4>
+                    <p>Secure user authentication and role management.</p>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-edit"></i>
+                    <h4>VS Code</h4>
+                    <p>Streamlined development environment for quick iteration.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- KEY FEATURES -->
+<section id="features-lux" class="modern-features-section">
+    <div class="modern-features-container">
+        <h2 class="modern-features-title">Key Features</h2>
+
+        <!-- Feature Row 1 -->
+        <div class="feature-row">
+            <div class="feature-icon-area">
+                <div class="feature-icon-circle">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="feature-line"></div>
+            </div>
+            <div class="feature-content">
+                <h3>User Registration &amp; Profile Management</h3>
+                <p>
+                    Allows travelers to create personal accounts, manage profiles,
+                    and customize booking preferences.
+                </p>
+            </div>
+        </div>
+
+        <!-- Feature Row 2 -->
+        <div class="feature-row">
+            <div class="feature-icon-area">
+                <div class="feature-icon-circle">
+                    <i class="fas fa-plane"></i>
+                </div>
+                <div class="feature-line"></div>
+            </div>
+            <div class="feature-content">
+                <h3>Booking System</h3>
+                <p>
+                    A secure and intuitive platform for flights, hotels, and car
+                    rentals—offering a range of options and competitive pricing.
+                </p>
+            </div>
+        </div>
+
+        <!-- Feature Row 3 -->
+        <div class="feature-row">
+            <div class="feature-icon-area">
+                <div class="feature-icon-circle">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <div class="feature-line"></div>
+            </div>
+            <div class="feature-content">
+                <h3>Administrative Capabilities</h3>
+                <p>
+                    Comprehensive backend tools for admins to add, edit, and remove
+                    travel listings, ensuring up-to-date offerings.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SYSTEM ARCHITECTURE & SECURITY -->
+<section class="system-architecture">
+    <div class="architecture-container">
+        <h2 class="section-title">System Architecture &amp; Security Measures</h2>
+        <div class="architecture-text">
+            <h3>MVC Architecture</h3>
+            <p>
+                Employs the Model-View-Controller pattern to promote clean
+                separation of concerns, enhance scalability, and streamline
+                development.
+            </p>
+            <p>
+                C# powers the robust backend, while MVC.NET Core handles request
+                routing, ensuring efficient rendering and maintainability.
+            </p>
+        </div>
+        <div class="architecture-text">
+            <h3>Security Protocols</h3>
+            <p>
+                Implements stringent security measures to safeguard user data
+                and transactions. Features like SSL encryption and secure user
+                authentication ensure confidentiality and integrity of all
+                booking activities.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECT IMPACT -->
+<section class="modern-impact-section">
+    <div class="modern-impact-container">
+        <h2 class="modern-impact-title">Project Impact</h2>
+        <div class="modern-impact-content">
+            <p>
+                JourneyJet significantly enhances the travel booking process by
+                unifying all essential services—flights, accommodations, and
+                vehicle rentals—into one integrated solution. Users enjoy
+                convenience, variety, and peace of mind, while administrators
+                benefit from powerful content management and customer engagement
+                tools. By streamlining the entire lifecycle of travel planning,
+                JourneyJet delivers tangible value for both travelers and
+                providers alike.
+            </p>
+        </div>
+    </div>
+</section>
+<!-- MEET THE TEAM SECTION -->
+<section class="team-section" style="
+  background: #1a1a2e;
+  padding: 2rem 1rem;
+  text-align: center;
+">
+    <h2 style="
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  ">
+        Meet the Team
+    </h2>
+    <p style="
+    font-size: 0.9rem;
+    color: #ccc;
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+    line-height: 1.4;
+  ">
+        This project was a collaborative effort by our talented team, each
+        contributing specialized skills to bring this platform to life.
+    </p>
+
+    <div class="team-container" style="
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  ">
+        <!-- Team Member 1 -->
+        <div class="team-card" style="
+      background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.12),
+            rgba(255, 255, 255, 0.06)
+          );
+      backdrop-filter: blur(6px);
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+      min-width: 120px;
+    ">
+            <p style="
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #fff;
+      ">
+                Mobina Zargary
+            </p>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div class="team-card" style="
+      background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.12),
+            rgba(255, 255, 255, 0.06)
+          );
+      backdrop-filter: blur(6px);
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+      min-width: 120px;
+    ">
+            <p style="
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #fff;
+      ">
+                Mahrad Baradaran
+            </p>
+        </div>
+
+
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>&copy; <span id="year"></span> Mobina zargary. All rights reserved.</p>
+</footer>
+
+<!-- Script for year, etc. -->
+<script>
+    const yearSpan = document.getElementById("year");
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+</script>
+</body>
+</html>
