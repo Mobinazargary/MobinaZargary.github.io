@@ -30,6 +30,7 @@
             background: radial-gradient(circle, #23233d, #1a1a2e);
             color: #ccc;
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         :root {
@@ -65,8 +66,14 @@
             color: var(--accent-color);
         }
         .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
             display: flex;
             gap: 1.5rem;
+        }
+        .nav-links li {
+            list-style: none;
         }
         .nav-links a {
             color: #ddd;
@@ -76,6 +83,14 @@
         }
         .nav-links a:hover {
             color: var(--accent-color);
+        }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #ddd;
+            cursor: pointer;
         }
 
         /***************************************************
@@ -93,7 +108,8 @@
                     rgba(26, 26, 46, 0.8),
                     rgba(35, 35, 61, 0.8)
             ),
-            url("assets/DALL·E 2025-03-16 15.41.36 - A stylish and modern café named 'Sol Cafe' with a warm, inviting ambiance. The exterior features large glass windows, a wooden sign with the café’s na.webp") center/cover no-repeat;
+            url("assets/DALL·E 2025-03-16 15.41.36 - A stylish and modern café named 'Sol Cafe' with a warm, inviting ambiance. The exterior features large glass windows, a wooden sign with the café’s na.webp")
+            center/cover no-repeat;
             padding: 3rem 1rem;
         }
         .hero-section::before {
@@ -396,6 +412,31 @@
                 flex-direction: column;
             }
         }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+            .nav-links {
+                position: absolute;
+                top: 64px;
+                right: 0;
+                background: radial-gradient(circle, #23233d, #1a1a2e);
+                flex-direction: column;
+                width: 200px;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            }
+            .nav-links li {
+                margin: 1rem 0;
+                text-align: right;
+                padding-right: 1rem;
+            }
+            .nav-links.open {
+                transform: translateX(0);
+            }
+        }
     </style>
 </head>
 
@@ -404,6 +445,9 @@
 <header class="navbar">
     <div class="nav-container">
         <div class="nav-logo">Mobina Zargary</div>
+        <button class="nav-toggle" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+        </button>
         <nav>
             <ul class="nav-links">
                 <li><a href="index.html#home">Home</a></li>
@@ -583,6 +627,7 @@
         </p>
     </div>
 </section>
+
 <!-- MEET THE TEAM SECTION -->
 <section class="team-section" style="
   background: #1a1a2e;
@@ -616,10 +661,10 @@
         <!-- Team Member 1 -->
         <div class="team-card" style="
       background: linear-gradient(
-            to right,
-            rgba(255, 255, 255, 0.12),
-            rgba(255, 255, 255, 0.06)
-          );
+        to right,
+        rgba(255, 255, 255, 0.12),
+        rgba(255, 255, 255, 0.06)
+      );
       backdrop-filter: blur(6px);
       padding: 0.8rem 1.2rem;
       border-radius: 8px;
@@ -639,10 +684,10 @@
         <!-- Team Member 2 -->
         <div class="team-card" style="
       background: linear-gradient(
-            to right,
-            rgba(255, 255, 255, 0.12),
-            rgba(255, 255, 255, 0.06)
-          );
+        to right,
+        rgba(255, 255, 255, 0.12),
+        rgba(255, 255, 255, 0.06)
+      );
       backdrop-filter: blur(6px);
       padding: 0.8rem 1.2rem;
       border-radius: 8px;
@@ -662,10 +707,10 @@
         <!-- Team Member 3 -->
         <div class="team-card" style="
       background: linear-gradient(
-            to right,
-            rgba(255, 255, 255, 0.12),
-            rgba(255, 255, 255, 0.06)
-          );
+        to right,
+        rgba(255, 255, 255, 0.12),
+        rgba(255, 255, 255, 0.06)
+      );
       backdrop-filter: blur(6px);
       padding: 0.8rem 1.2rem;
       border-radius: 8px;
@@ -685,10 +730,10 @@
         <!-- Team Member 4 -->
         <div class="team-card" style="
       background: linear-gradient(
-            to right,
-            rgba(255, 255, 255, 0.12),
-            rgba(255, 255, 255, 0.06)
-          );
+        to right,
+        rgba(255, 255, 255, 0.12),
+        rgba(255, 255, 255, 0.06)
+      );
       backdrop-filter: blur(6px);
       padding: 0.8rem 1.2rem;
       border-radius: 8px;
@@ -707,7 +752,6 @@
     </div>
 </section>
 
-
 <!-- FOOTER -->
 <footer class="footer">
     <p>&copy; <span id="year"></span> Mobina Zargary. All rights reserved.</p>
@@ -716,6 +760,13 @@
 <script>
     // Dynamic year in footer
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Hamburger toggle
+    const toggle = document.querySelector('.nav-toggle');
+    const links  = document.querySelector('.nav-links');
+    toggle.addEventListener('click', () => {
+        links.classList.toggle('open');
+    });
 </script>
 </body>
 </html>

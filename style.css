@@ -648,6 +648,35 @@ body {
 .contact-info-item i {
     font-size: 1.2rem;
 }
+/* make contact links wrap when needed */
+.contact-info-row {
+    flex-wrap: wrap;
+    justify-content: center;  /* center even when wrapped */
+    gap: 1.5rem;              /* a little tighter gap on small screens */
+}
+
+/* small tablets / large phones */
+@media (max-width: 768px) {
+    .contact-info-item {
+        font-size: 0.95rem;     /* slightly smaller text */
+    }
+}
+
+/* phones */
+@media (max-width: 576px) {
+    .contact-info-row {
+        flex-direction: column; /* stack vertically */
+        align-items: center;    /* center each line */
+        gap: 0.75rem;
+    }
+
+    .contact-info-item {
+        width: 100%;            /* full width so text wraps nicely */
+        max-width: 300px;       /* cap how wide each can get */
+        justify-content: center;
+        font-size: 0.9rem;
+    }
+}
 
 /* Accent link color */
 .link-accent {
@@ -711,5 +740,93 @@ body {
 @media (max-width: 768px) {
     .nav-links {
         display: none; /* Hide links on small screens if you want a hamburger approach */
+    }
+}
+/* Tablet & small desktops (<=768px) */
+@media (max-width: 768px) {
+
+    /* Hero */
+    .hero-title {
+        font-size: 2rem;
+    }
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    .profile-img {
+        width: 250px;
+        height: 250px;
+    }
+    .hero-ctas {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    /* About */
+    .about-lux-container,
+    .languages-lux-container {
+        flex-direction: column;
+        padding: 1.5rem;
+        text-align: center;
+    }
+    .rotating-cartoon {
+        width: 350px;
+    }
+
+    /* Projects */
+    .projects-alt-row {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .project-card {
+        width: 100%;
+        max-width: 500px;
+    }
+
+}
+
+/* Phones (<=576px) */
+@media (max-width: 576px) {
+
+    /* Navbar */
+    .nav-container {
+        justify-content: center;
+    }
+
+    /* Hero */
+    .hero-title {
+        font-size: 1.75rem;
+    }
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+    .profile-img {
+        width: 200px;
+        height: 200px;
+    }
+    .hero-ctas .btn-hero,
+    .hero-ctas .btn-outline {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Social icons */
+    .hero-socials {
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+
+
+    /* Projects */
+    .projects-alt-row {
+        gap: 1.5rem;
+    }
+
+
+
+    /* Footer */
+    .footer {
+        font-size: 0.9rem;
+        padding: 0.75rem;
     }
 }

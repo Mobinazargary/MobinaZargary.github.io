@@ -23,10 +23,12 @@
       padding: 0;
       box-sizing: border-box;
     }
-    body {
+    html, body {
       font-family: "Montserrat", sans-serif;
       background-color: #14142b;
       color: #fff;
+      scroll-behavior: smooth;
+      overflow-x: hidden; /* prevent horizontal scroll when menu is hidden */
     }
     a {
       text-decoration: none;
@@ -41,27 +43,29 @@
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       z-index: 999;
     }
-
     .nav-container {
       max-width: 1500px;
       height: 64px;
-      margin: 0;
+      margin: 0 auto;
       padding: 0 1rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-
     }
-
     .nav-logo {
       font-size: 1.5rem;
       font-weight: 600;
       color: #6c63ff;
     }
 
+    /* remove bullets */
     .nav-links {
+      list-style: none;
       display: flex;
       gap: 1.5rem;
+    }
+    .nav-links li {
+      list-style: none;
     }
     .nav-links a {
       color: #ddd;
@@ -72,6 +76,15 @@
       color: #6c63ff;
     }
 
+    /* hamburger toggle */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #ddd;
+      cursor: pointer;
+    }
 
     /* HERO SECTION */
     .hero-section {
@@ -84,12 +97,11 @@
       padding: 2rem;
       text-align: center;
     }
-    /* Add blur effect to the background */
     .hero-section::before {
       content: "";
       position: absolute;
       inset: 0;
-      backdrop-filter: blur(70px); /* Slight blur effect */
+      backdrop-filter: blur(70px);
       z-index: -1;
     }
     .hero-overlay {
@@ -101,13 +113,13 @@
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 1200px; /* Increase max width for more spacing */
+      max-width: 1200px;
       margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: space-between; /* Push items apart */
-      gap: 4rem; /* Increase gap between text and frame */
+      justify-content: space-between;
+      gap: 4rem;
     }
 
     .hero-text {
@@ -133,43 +145,36 @@
       border-radius: 4px;
       font-weight: 600;
       transition: background-color 0.3s;
+      margin-right: 1rem;
     }
     .hero-btn:hover {
       background-color: #5b55d1;
     }
 
-
     /* Laptop Frame Container */
     .laptop-container {
       flex: 1;
-      min-width: 600px; /* Increased size */
+      min-width: 600px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    /* Laptop Frame - Make it smaller */
     .laptop-frame {
       position: relative;
-      width: 800px; /* Reduce width */
-      height: 450px; /* Adjust height */
+      width: 800px;
+      height: 450px;
       background: #000;
       border-radius: 15px;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
       overflow: hidden;
       border: 12px solid #222;
     }
-
-    /* Ensure the image fully covers the frame */
     .laptop-screen {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
-
-
-
-
     .laptop-frame::before {
       content: "";
       position: absolute;
@@ -182,7 +187,7 @@
       border-radius: 5px;
     }
 
-    /* SECTION TITLES (Shared) */
+    /* SECTION TITLES */
     .section-title {
       text-align: center;
       font-size: 2rem;
@@ -214,7 +219,6 @@
     }
     .tech-item i {
       font-size: 2rem;
-      color: #6c63ff;
       margin-bottom: 0.5rem;
     }
     .tech-item h4 {
@@ -227,27 +231,10 @@
       color: #ccc;
       line-height: 1.4;
     }
-    /* Override the default purple color for each technology icon with its real-world color */
-
-    /* 1) React => #61DAFB */
-    .tech-section .tech-grid .tech-item:nth-child(1) i {
-      color: #61dafb;
-    }
-
-    /* 2) OpenWeatherMap => #FFA500 (Orange tone often associated with weather/OWM) */
-    .tech-section .tech-grid .tech-item:nth-child(2) i {
-      color: #ffa500;
-    }
-
-    /* 3) Custom CSS => #264de4 (Typical CSS brand color) */
-    .tech-section .tech-grid .tech-item:nth-child(3) i {
-      color: #264de4;
-    }
-
-    /* 4) Weather Icons => #ffd700 (Golden color for icons) */
-    .tech-section .tech-grid .tech-item:nth-child(4) i {
-      color: #ffd700;
-    }
+    .tech-grid .tech-item:nth-child(1) i { color: #61dafb; }
+    .tech-grid .tech-item:nth-child(2) i { color: #ffa500; }
+    .tech-grid .tech-item:nth-child(3) i { color: #264de4; }
+    .tech-grid .tech-item:nth-child(4) i { color: #ffd700; }
 
     /* FEATURES SECTION */
     .features-section {
@@ -280,7 +267,6 @@
       line-height: 1.5;
     }
 
-
     /* FOOTER */
     .footer {
       background: #0d0d14;
@@ -290,25 +276,81 @@
       box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
     }
 
+    /* Responsive navbar & layout */
+    @media (max-width: 992px) {
+      .hero-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-text {
+        order: 2;
+      }
+      .laptop-container {
+        order: 1;
+        margin-bottom: 2rem;
+      }
+      .laptop-frame {
+        width: 90%;
+        height: auto;
+        aspect-ratio: 16/9;
+      }
+    }
+
+    @media (max-width: 768px) {
+      /* show hamburger */
+      .nav-toggle {
+        display: block;
+      }
+      /* hide links off‑canvas */
+      .nav-links {
+        position: absolute;
+        top: 64px;
+        right: 0;
+        background: radial-gradient(circle, #23233d, #1a1a2e);
+        flex-direction: column;
+        width: 200px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      }
+      .nav-links li {
+        margin: 1rem 0;
+        text-align: right;
+        padding-right: 1rem;
+      }
+      .nav-links.open {
+        transform: translateX(0);
+      }
+      .nav-links, .nav-toggle {
+        z-index: 1000;
+      }
+      .nav-container {
+        position: relative;
+      }
+    }
   </style>
 </head>
-<body>
 
+<body>
+<!-- NAVBAR -->
 <header class="navbar">
   <div class="nav-container">
     <div class="nav-logo">Mobina Zargary</div>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <i class="fas fa-bars"></i>
+    </button>
     <nav>
       <ul class="nav-links">
         <li><a href="index.html#home">Home</a></li>
         <li><a href="index.html#about-lux">About</a></li>
         <li><a href="index.html#projects">Projects</a></li>
-        <!-- Link to Contact section -->
         <li><a href="index.html#contact-lux">Contact</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
+<!-- HERO SECTION -->
 <section class="hero-section">
   <div class="hero-overlay"></div>
   <div class="hero-content">
@@ -317,8 +359,8 @@
       <p>
         A ReactJS-based weather application that provides current conditions
         and a 5-day forecast for any searched city. By leveraging the
-        OpenWeatherMap API, it delivers accurate data on temperature, humidity,
-        wind, and more—helping users plan their day with ease.
+        OpenWeatherMap API, it delivers accurate data on temperature,
+        humidity, wind, and more—helping users plan their day with ease.
       </p>
       <a href="https://youtu.be/whgoxWaEzHk" class="hero-btn">Watch Video</a>
       <a href="https://github.com/Mobinazargary/comp3123-LabTest2.git" class="hero-btn">Github Repo</a>
@@ -334,6 +376,7 @@
     </div>
   </div>
 </section>
+
 <!-- TECHNOLOGIES USED -->
 <section class="tech-section">
   <h2 class="section-title">Technologies Used</h2>
@@ -341,30 +384,22 @@
     <div class="tech-item">
       <i class="fab fa-react"></i>
       <h4>React.js</h4>
-      <p>
-        Frontend framework for building dynamic, component-based user interfaces.
-      </p>
+      <p>Frontend framework for building dynamic user interfaces.</p>
     </div>
     <div class="tech-item">
       <i class="fas fa-cloud-sun-rain"></i>
       <h4>OpenWeatherMap API</h4>
-      <p>
-        Fetching real-time weather data, including current conditions & forecasts.
-      </p>
+      <p>Fetches real-time weather data and forecasts.</p>
     </div>
     <div class="tech-item">
       <i class="fas fa-code"></i>
       <h4>Custom CSS</h4>
-      <p>
-        Responsive styling for a seamless experience across various devices.
-      </p>
+      <p>Responsive styling for a seamless cross‑device experience.</p>
     </div>
     <div class="tech-item">
       <i class="fas fa-icons"></i>
       <h4>Weather Icons</h4>
-      <p>
-        Icon sets from OpenWeatherMap for visual representation of conditions.
-      </p>
+      <p>Icon sets from OpenWeatherMap for visual condition cues.</p>
     </div>
   </div>
 </section>
@@ -375,45 +410,37 @@
   <div class="features-container">
     <div class="feature-card">
       <h3>Real-Time Weather</h3>
-      <p>
-        Fetches current weather data (temperature, humidity, wind, etc.)
-        for any city via the OpenWeatherMap API, ensuring accurate results.
-      </p>
+      <p>Displays current weather data (temp, humidity, wind, etc.).</p>
     </div>
     <div class="feature-card">
       <h3>City Search with Debounce</h3>
-      <p>
-        Users can type their city name, and a debounce function prevents
-        excessive API calls, ensuring smooth performance.
-      </p>
+      <p>Prevents excessive API calls for smooth performance.</p>
     </div>
     <div class="feature-card">
       <h3>5-Day Forecast</h3>
-      <p>
-        Displays a multi-day outlook for upcoming weather conditions,
-        helping users plan ahead.
-      </p>
+      <p>Shows multi-day outlook to help you plan ahead.</p>
     </div>
     <div class="feature-card">
       <h3>Responsive UI</h3>
-      <p>
-        Designed to adapt to different screen sizes, ensuring a seamless
-        experience on mobile, tablet, and desktop.
-      </p>
+      <p>Adapts seamlessly to mobile, tablet, and desktop.</p>
     </div>
   </div>
 </section>
 
-
-
 <!-- FOOTER -->
 <footer class="footer">
-  <p>&copy; <span id="year"></span> Mobina zargary. All rights reserved.</p>
+  <p>&copy; <span id="year"></span> Mobina Zargary. All rights reserved.</p>
 </footer>
 
-<!-- JavaScript for dynamic year -->
 <script>
+  // Dynamic year
   document.getElementById("year").textContent = new Date().getFullYear();
+  // Hamburger toggle
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('.nav-links');
+  toggle.addEventListener('click', () => {
+    links.classList.toggle('open');
+  });
 </script>
 </body>
 </html>

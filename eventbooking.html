@@ -5,78 +5,56 @@
     <meta name="description" content="Event Booking Platform – Microservices-based event & venue reservations" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Event Booking Platform</title>
-
-    <!-- Google Font & Font Awesome -->
-    <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
-            rel="stylesheet"
-    />
-    <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-        /* Base Reset & Font */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: "Montserrat", sans-serif;
-            background-color: #14142b;
-            color: #fff;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Montserrat", sans-serif; background-color: #14142b; color: #fff; }
+        a { text-decoration: none; color: inherit; }
 
-        /* NAVBAR */
-        .navbar {
-            position: sticky;
-            top: 0;
-            width: 100%;
-            background: radial-gradient(circle, #23233d, #1a1a2e);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 999;
-        }
+        .navbar { position: sticky; top: 0; width: 100%; background: radial-gradient(circle, #23233d, #1a1a2e); box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 999; }
+        .nav-container { max-width: 1500px; height: 64px; margin: 0 auto; padding: 0 1rem; display: flex; align-items: center; justify-content: space-between; position: relative; }
+        .nav-logo { font-size: 1.5rem; font-weight: 600; color: #6c63ff; }
+        .nav-links { list-style: none; display: flex; gap: 1.5rem; }
+        .nav-links li { list-style: none; }
+        .nav-links a { color: #ddd; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: #6c63ff; }
 
-        .nav-container {
-            max-width: 1500px;
-            height: 64px;
-            margin: 0;
-            padding: 0 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-        }
-
-        .nav-logo {
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
             font-size: 1.5rem;
-            font-weight: 600;
-            color: #6c63ff;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-        .nav-links a {
             color: #ddd;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        .nav-links a:hover {
-            color: #6c63ff;
+            cursor: pointer;
         }
 
+        @media (max-width: 768px) {
+            .nav-toggle { display: block; }
+            .nav-links {
+                position: absolute;
+                top: 64px;
+                right: 0;
+                background: radial-gradient(circle, #23233d, #1a1a2e);
+                flex-direction: column;
+                width: 200px;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                display: none;
+            }
+            .nav-links.open {
+                display: flex;
+                transform: translateX(0);
+            }
+            .nav-links li {
+                margin: 1rem 0;
+                text-align: right;
+                padding-right: 1rem;
+            }
+        }
 
-        /* HERO SECTION (Luxurious/Professional) */
         .hero-section {
-            /* Keep your hero background image here */
             background: url("assets/event.webp") center/cover no-repeat, #1a1a2e;
             position: relative;
             min-height: 100vh;
@@ -89,19 +67,11 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: rgba(20, 20, 43, 0.6); /* Dark overlay */
+            background: rgba(20,20,43,0.6);
             z-index: 0;
-            /* Subtle fade-in animation */
             animation: fadeOverlay 1s ease forwards;
         }
-        @keyframes fadeOverlay {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
+        @keyframes fadeOverlay { 0% { opacity: 0; } 100% { opacity: 1; } }
 
         .hero-container {
             position: relative;
@@ -110,17 +80,16 @@
             margin: 0 auto;
             padding: 4rem 1rem;
             display: flex;
-            flex-direction: column; /* Single column for a simpler look */
+            flex-direction: column;
             align-items: center;
             text-align: center;
         }
 
-        /* Glassy, luxurious text block */
         .hero-text-block {
-            background: rgba(255, 255, 255, 0.07);
+            background: rgba(255,255,255,0.07);
             backdrop-filter: blur(10px);
             border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
             padding: 2rem;
             max-width: 800px;
             animation: slideUp 1s ease forwards;
@@ -128,10 +97,7 @@
             opacity: 0;
         }
         @keyframes slideUp {
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .hero-text-block h1 {
@@ -142,24 +108,11 @@
             align-items: center;
             justify-content: center;
             gap: 0.6rem;
-            /* Subtle text shadow for a glowing effect */
             text-shadow: 0 2px 5px rgba(108, 99, 255, 0.3);
         }
-        .hero-icon {
-            font-size: 2.2rem;
-            color: #6c63ff;
-        }
-        .hero-text-block p {
-            font-size: 1.1rem;
-            color: #ddd;
-            margin-bottom: 2rem;
-            line-height: 1.7;
-        }
-        .hero-btns {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-        }
+        .hero-icon { font-size: 2.2rem; color: #6c63ff; }
+        .hero-text-block p { font-size: 1.1rem; color: #ddd; margin-bottom: 2rem; line-height: 1.7; }
+        .hero-btns { display: flex; gap: 1.5rem; justify-content: center; }
         .btn-hero {
             display: inline-block;
             background-color: #6c63ff;
@@ -170,12 +123,8 @@
             transition: background-color 0.3s, transform 0.3s;
             box-shadow: 0 4px 12px rgba(108, 99, 255, 0.3);
         }
-        .btn-hero:hover {
-            background-color: #5b55d1;
-            transform: translateY(-2px);
-        }
+        .btn-hero:hover { background-color: #5b55d1; transform: translateY(-2px); }
 
-        /* KEY FEATURES SECTION */
         .features-section {
             background: #1a1a2e;
             padding: 3rem 1rem;
@@ -183,11 +132,7 @@
             margin: 0 auto;
             text-align: center;
         }
-        .features-section h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-        }
+        .features-section h2 { font-size: 2rem; font-weight: 700; margin-bottom: 2rem; }
         .features-container {
             display: grid;
             grid-template-columns: 1fr;
@@ -197,41 +142,23 @@
             text-align: left;
         }
         .feature-card {
-            background: rgba(255, 255, 255, 0.07);
+            background: rgba(255,255,255,0.07);
             backdrop-filter: blur(6px);
             padding: 2rem;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             position: relative;
         }
-        .feature-icon {
-            font-size: 1.8rem;
-            color: #6c63ff;
-            margin-bottom: 0.5rem;
-            display: inline-block;
-        }
-        .feature-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-        .feature-card p {
-            font-size: 0.95rem;
-            color: #ccc;
-            line-height: 1.5;
-        }
+        .feature-icon { font-size: 1.8rem; color: #6c63ff; margin-bottom: 0.5rem; display: inline-block; }
+        .feature-card h3 { font-size: 1.4rem; margin-bottom: 0.5rem; font-weight: 600; }
+        .feature-card p { font-size: 0.95rem; color: #ccc; line-height: 1.5; }
 
-        /* TECH SECTION */
         .tech-section {
             background: #14142b;
             padding: 4rem 1rem;
             text-align: center;
         }
-        .tech-section h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-        }
+        .tech-section h2 { font-size: 2rem; font-weight: 700; margin-bottom: 2rem; }
         .tech-grid {
             display: flex;
             flex-wrap: wrap;
@@ -241,63 +168,24 @@
             margin: 0 auto;
         }
         .tech-item {
-            background: rgba(255, 255, 255, 0.07);
+            background: rgba(255,255,255,0.07);
             backdrop-filter: blur(6px);
             padding: 1.5rem;
             border-radius: 8px;
             width: 220px;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
-        .tech-item i {
-            font-size: 2rem;
-            color: #6c63ff;
-            margin-bottom: 0.5rem;
-        }
-        .tech-item h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        .tech-item p {
-            font-size: 0.95rem;
-            color: #ccc;
-            line-height: 1.4;
-        }
-        /* Override the default icon color for each tech-item in the Tech Stack */
+        .tech-item i { font-size: 2rem; color: #6c63ff; margin-bottom: 0.5rem; }
+        .tech-item h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .tech-item p { font-size: 0.95rem; color: #ccc; line-height: 1.4; }
+        .tech-grid .tech-item:nth-child(1) i { color: #007396; }
+        .tech-grid .tech-item:nth-child(2) i { color: #336791; }
+        .tech-grid .tech-item:nth-child(3) i { color: #47A248; }
+        .tech-grid .tech-item:nth-child(4) i { color: #915EFF; }
+        .tech-grid .tech-item:nth-child(5) i { color: #2496ED; }
+        .tech-grid .tech-item:nth-child(6) i { color: #f56300; }
 
-        /* 1) Java (Spring Boot) */
-        .tech-section .tech-grid .tech-item:nth-child(1) i {
-            color: #007396; /* Java brand-like color */
-        }
-
-        /* 2) PostgreSQL */
-        .tech-section .tech-grid .tech-item:nth-child(2) i {
-            color: #336791; /* PostgreSQL brand color */
-        }
-
-        /* 3) MongoDB */
-        .tech-section .tech-grid .tech-item:nth-child(3) i {
-            color: #47A248; /* MongoDB brand color */
-        }
-
-        /* 4) JWT & OAuth 2.0 */
-        .tech-section .tech-grid .tech-item:nth-child(4) i {
-            color: #915EFF; /* e.g. JWT brand-like color */
-        }
-
-        /* 5) Docker */
-        .tech-section .tech-grid .tech-item:nth-child(5) i {
-            color: #2496ED; /* Docker brand color */
-        }
-
-        /* 6) Microservices (generic) */
-        .tech-section .tech-grid .tech-item:nth-child(6) i {
-            color: #f56300; /* Example orange for "microservices" */
-        }
-
-
-        /* IMPACT SECTION */
         .impact-section {
             padding: 4rem 1rem;
             background: linear-gradient(135deg, #201f35, #131225);
@@ -306,46 +194,36 @@
         .impact-container {
             max-width: 900px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.07);
+            background: rgba(255,255,255,0.07);
             backdrop-filter: blur(8px);
             padding: 2rem;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
-        .impact-container h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-        .impact-container p {
-            font-size: 1rem;
-            color: #ccc;
-            line-height: 1.6;
-            margin: 0;
-        }
+        .impact-container h2 { font-size: 2rem; font-weight: 700; margin-bottom: 1.5rem; }
+        .impact-container p { font-size: 1rem; color: #ccc; line-height: 1.6; margin: 0; }
 
-        /* FOOTER */
         .footer {
             background: #0d0d14;
             text-align: center;
             padding: 1rem;
             color: #999;
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
         }
     </style>
 </head>
 <body>
-
-<!-- NAVBAR -->
 <header class="navbar">
     <div class="nav-container">
         <div class="nav-logo">Mobina Zargary</div>
+        <button class="nav-toggle" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+        </button>
         <nav>
             <ul class="nav-links">
                 <li><a href="index.html#home">Home</a></li>
                 <li><a href="index.html#about-lux">About</a></li>
                 <li><a href="index.html#projects">Projects</a></li>
-                <!-- Link to Contact section -->
                 <li><a href="index.html#contact-lux">Contact</a></li>
             </ul>
         </nav>
@@ -625,8 +503,12 @@
 </footer>
 
 <script>
-    // Dynamic year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const toggle = document.querySelector('.nav-toggle');
+    const links = document.querySelector('.nav-links');
+    toggle.addEventListener('click', () => {
+        links.classList.toggle('open');
+    });
 </script>
 </body>
 </html>

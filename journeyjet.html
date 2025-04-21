@@ -6,80 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JourneyJet – Travel Booking Platform</title>
 
-    <!-- Google Font & Font Awesome -->
-    <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
-            rel="stylesheet"
-    />
-    <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
     <style>
-        /* Base Reset & Typography */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: "Montserrat", sans-serif;
-            background: #14142b;
-            color: #fff;
-            line-height: 1.6;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Montserrat", sans-serif; background: #14142b; color: #fff; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+
+        .navbar { position: sticky; top: 0; width: 100%; background: radial-gradient(circle, #23233d, #1a1a2e); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); z-index: 999; }
+        .nav-container { max-width: 1500px; height: 64px; margin: 0; padding: 0 1rem; display: flex; align-items: center; justify-content: space-between; position: relative; }
+        .nav-logo { font-size: 1.5rem; font-weight: 600; color: #6c63ff; }
+        .nav-links { list-style: none; display: flex; gap: 1.5rem; }
+        .nav-links li { list-style: none; }
+        .nav-links a { color: #ddd; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: #6c63ff; }
+        .nav-toggle { display: none; background: none; border: none; font-size: 1.5rem; color: #ddd; cursor: pointer; }
+
+        @media (max-width: 768px) {
+            .nav-toggle { display: block; }
+            .nav-links {
+                position: absolute;
+                top: 64px;
+                right: 0;
+                background: radial-gradient(circle, #23233d, #1a1a2e);
+                flex-direction: column;
+                width: 200px;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                display: none;
+            }
+            .nav-links.open { display: flex; transform: translateX(0); }
+            .nav-links li { margin: 1rem 0; text-align: right; padding-right: 1rem; }
         }
 
-        /* Navbar */
-        .navbar {
-            position: sticky;
-            top: 0;
-            width: 100%;
-            background: radial-gradient(circle, #23233d, #1a1a2e);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 999;
-        }
-
-        .nav-container {
-            max-width: 1500px;
-            height: 64px;
-            margin: 0;
-            padding: 0 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-        }
-
-        .nav-logo {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #6c63ff;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-        .nav-links a {
-            color: #ddd;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        .nav-links a:hover {
-            color: #6c63ff;
-        }
-
-        /* HERO SECTION - background + text only */
         .hero-journey {
             position: relative;
             padding: 6rem 1rem;
             overflow: hidden;
-            /* Use your travel-themed background image path below */
             background: url("assets/DALL·E 2025-03-11 21.33.58 - A beautiful travel-themed background with a blend of famous landmarks like the Eiffel Tower, Colosseum, Big Ben, and tropical palm trees. The scene sh.webp") no-repeat center center/cover;
             text-align: center;
         }
@@ -94,7 +59,7 @@
             position: relative;
         }
         .journey-text-glass {
-            background: rgba(0, 0, 0, 0.5); /* dark overlay for text readability */
+            background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(10px);
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
@@ -120,61 +85,29 @@
             border-radius: 4px;
             font-weight: 600;
             transition: background 0.3s;
+            margin-right: 1rem;
         }
-        .btn-watch:hover {
-            background: #5b55d1;
-        }
+        .btn-watch:hover { background: #5b55d1; }
 
-        /* TECHNOLOGIES USED - angled image on left, 2-col grid for tech items */
-        .technologies-section {
-            padding: 4rem 1rem;
-            background: #1a1a2e;
-            text-align: center;
-        }
-        .technologies-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .section-title {
-            width: 100%;
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-        /* Tech row: left image + right grid */
-        .tech-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 3rem; /* more space */
-            flex-wrap: wrap; /* responsive */
-        }
-        /* Left side: angled image from the RIGHT side by default */
-        .tech-image-wrapper {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            perspective: 1200px; /* for 3D effect */
-        }
+        .technologies-section { padding: 4rem 1rem; background: #1a1a2e; text-align: center; }
+        .technologies-container { max-width: 1200px; margin: 0 auto; }
+        .section-title { width: 100%; font-size: 2rem; font-weight: 700; margin-bottom: 2rem; text-align: center; }
+        .tech-row { display: flex; align-items: center; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+        .tech-image-wrapper { flex: 1; display: flex; justify-content: center; perspective: 1200px; }
         .angled-tech-image {
-            width: 700px; /* adjust as you like for “very bigger” */
+            width: 700px;
             height: auto;
             border-radius: 10px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-
-            transform: rotateY(25deg); /* angled from the RIGHT side */
+            transform: rotateY(25deg);
             transform-style: preserve-3d;
             transition: transform 0.6s ease;
         }
-        .angled-tech-image:hover {
-            transform: rotateY(0deg);
-        }
-        /* Right side: 2-col grid of smaller containers */
+        .angled-tech-image:hover { transform: rotateY(0deg); }
         .tech-grid {
             flex: 1;
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 columns */
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
             justify-items: center;
         }
@@ -184,100 +117,33 @@
             padding: 1.5rem;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-
-            /* smaller container size */
             min-width: 140px;
             max-width: 200px;
-
             text-align: center;
             transition: transform 0.3s;
         }
-        .tech-item:hover {
-            transform: translateY(-5px);
-        }
-        .tech-item i {
-            font-size: 2rem;
-            color: #6c63ff;
-            margin-bottom: 0.5rem;
-        }
-        tech-item h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #fff; /* Title text color */
-        }
-        .tech-item p {
-            font-size: 0.95rem;
-            color: #ccc;
-            line-height: 1.4;
-        }
-        /* Override the default purple color for each technology icon with real-world brand-like colors */
+        .tech-item:hover { transform: translateY(-5px); }
+        .tech-item i { font-size: 2rem; margin-bottom: 0.5rem; }
+        .tech-item h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: #fff; }
+        .tech-item p { font-size: 0.95rem; color: #ccc; line-height: 1.4; }
 
-        /* 1) C# */
-        .tech-item:nth-child(1) i {
-            color: #68217A; /* or #512bd4, etc. */
-        }
-        /* 2) MVC.NET Core icon */
-        .tech-item:nth-child(2) i {
-            color: #512bd4; /* .NET brand color */
-        }
-        /* 3) MVC.NET Identity icon */
-        .tech-item:nth-child(3) i {
-            color: #5c2d91; /* Another .NET brand shade */
-        }
-        /* 4) VS Code icon */
-        .tech-item:nth-child(4) i {
-            color: #007ACC; /* VS Code brand color */
-        }
+        .tech-item:nth-child(1) i { color: #68217A; }
+        .tech-item:nth-child(2) i { color: #512bd4; }
+        .tech-item:nth-child(3) i { color: #5c2d91; }
+        .tech-item:nth-child(4) i { color: #007ACC; }
 
-
-
-        /* Responsive for the tech row */
         @media (max-width: 992px) {
-            .tech-row {
-                flex-direction: column;
-            }
-            .angled-tech-image {
-                width: 300px; /* narrower on smaller screens */
-                margin-bottom: 2rem;
-                transform: rotateY(25deg);
-            }
-            .angled-tech-image:hover {
-                transform: rotateY(0deg);
-            }
-            .tech-grid {
-                grid-template-columns: 1fr; /* single column on narrower screens */
-            }
+            .tech-row { flex-direction: column; }
+            .angled-tech-image { width: 300px; margin-bottom: 2rem; transform: rotateY(25deg); }
+            .angled-tech-image:hover { transform: rotateY(0deg); }
+            .tech-grid { grid-template-columns: 1fr; }
         }
 
-        /* KEY FEATURES - Vertical Row Style */
-        .modern-features-section {
-            position: relative;
-            padding: 2rem 1rem;
-            background: #14142b;
-        }
-        .modern-features-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .modern-features-title {
-            font-size: 2rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        .feature-row {
-            display: flex;
-            align-items: flex-start;
-            gap: 2rem;
-            margin-bottom: 2.5rem;
-        }
-        .feature-icon-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 60px;
-        }
+        .modern-features-section { position: relative; padding: 2rem 1rem; background: #14142b; }
+        .modern-features-container { max-width: 1200px; margin: 0 auto; }
+        .modern-features-title { font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 3rem; }
+        .feature-row { display: flex; align-items: flex-start; gap: 2rem; margin-bottom: 2.5rem; }
+        .feature-icon-area { display: flex; flex-direction: column; align-items: center; min-width: 60px; }
         .feature-icon-circle {
             width: 60px;
             height: 60px;
@@ -289,16 +155,8 @@
             justify-content: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
-        .feature-icon-circle i {
-            font-size: 1.5rem;
-            color: #6c63ff;
-        }
-        .feature-line {
-            width: 2px;
-            flex: 1;
-            background: #444;
-            margin-top: 1rem;
-        }
+        .feature-icon-circle i { font-size: 1.5rem; color: #6c63ff; }
+        .feature-line { width: 2px; flex: 1; background: #444; margin-top: 1rem; }
         .feature-content {
             flex: 1;
             background: rgba(255,255,255,0.05);
@@ -307,75 +165,29 @@
             padding: 1.5rem;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
-        .feature-content h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-        .feature-content p {
-            font-size: 0.95rem;
-            color: #ccc;
-            line-height: 1.5;
-        }
+        .feature-content h3 { font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: 600; }
+        .feature-content p { font-size: 0.95rem; color: #ccc; line-height: 1.5; }
+
         @media (max-width: 768px) {
-            .feature-row {
-                flex-direction: row;
-                gap: 1rem;
-            }
-            .feature-icon-circle {
-                margin-bottom: 1rem;
-            }
-            .feature-line {
-                display: none; /* hide vertical line on small screens */
-            }
+            .feature-row { flex-direction: row; gap: 1rem; }
+            .feature-icon-circle { margin-bottom: 1rem; }
+            .feature-line { display: none; }
         }
 
-        /* (OPTIONAL) SYSTEM ARCHITECTURE & SECURITY */
-        .system-architecture {
-            padding: 2rem 1rem;
-            background: #1a1a2e;
-        }
-        .architecture-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .architecture-container h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        .architecture-text {
-            margin-bottom: 2rem;
-        }
-        .architecture-text h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #6c63ff;
-        }
-        .architecture-text p {
-            font-size: 0.95rem;
-            color: #ccc;
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
+        .system-architecture { padding: 2rem 1rem; background: #1a1a2e; }
+        .architecture-container { max-width: 1000px; margin: 0 auto; }
+        .architecture-container h2 { font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 2rem; }
+        .architecture-text { margin-bottom: 2rem; }
+        .architecture-text h3 { font-size: 1.3rem; font-weight: 600; margin-bottom: 1rem; color: #6c63ff; }
+        .architecture-text p { font-size: 0.95rem; color: #ccc; margin-bottom: 1rem; line-height: 1.5; }
 
-        /* PROJECT IMPACT - Gradient + Card */
         .modern-impact-section {
             padding: 4rem 1rem;
             background: linear-gradient(135deg, #201f35, #131225);
             text-align: center;
         }
-        .modern-impact-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .modern-impact-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-        }
+        .modern-impact-container { max-width: 1000px; margin: 0 auto; }
+        .modern-impact-title { font-size: 2rem; font-weight: 700; margin-bottom: 2rem; }
         .modern-impact-content {
             background: rgba(255,255,255,0.07);
             backdrop-filter: blur(8px);
@@ -385,14 +197,8 @@
             max-width: 800px;
             margin: 0 auto;
         }
-        .modern-impact-content p {
-            font-size: 1rem;
-            color: #ccc;
-            line-height: 1.6;
-            margin: 0;
-        }
+        .modern-impact-content p { font-size: 1rem; color: #ccc; line-height: 1.6; margin: 0; }
 
-        /* Footer */
         .footer {
             background: #0d0d14;
             text-align: center;
@@ -404,16 +210,15 @@
 </head>
 <body>
 
-<!-- NAVBAR -->
 <header class="navbar">
     <div class="nav-container">
         <div class="nav-logo">Mobina Zargary</div>
+        <button class="nav-toggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
         <nav>
             <ul class="nav-links">
                 <li><a href="index.html#home">Home</a></li>
                 <li><a href="index.html#about-lux">About</a></li>
                 <li><a href="index.html#projects">Projects</a></li>
-                <!-- Link to Contact section -->
                 <li><a href="index.html#contact-lux">Contact</a></li>
             </ul>
         </nav>
@@ -672,10 +477,12 @@
 
 <!-- Script for year, etc. -->
 <script>
-    const yearSpan = document.getElementById("year");
-    if (yearSpan) {
-        yearSpan.textContent = new Date().getFullYear();
-    }
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const toggle = document.querySelector('.nav-toggle');
+    const links = document.querySelector('.nav-links');
+    toggle.addEventListener('click', () => {
+        links.classList.toggle('open');
+    });
 </script>
 </body>
 </html>

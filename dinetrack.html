@@ -17,7 +17,6 @@
     />
 
     <style>
-        /* Base Reset & Font */
         * {
             margin: 0;
             padding: 0;
@@ -27,12 +26,12 @@
             font-family: "Montserrat", sans-serif;
             background: #14142b;
             color: #fff;
+            overflow-x: hidden;
         }
         a {
             text-decoration: none;
         }
 
-        /* Navbar */
         .navbar {
             position: sticky;
             top: 0;
@@ -41,26 +40,27 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             z-index: 999;
         }
-
         .nav-container {
             max-width: 1500px;
             height: 64px;
-            margin: 0;
+            margin: 0 auto;
             padding: 0 1rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
-
         .nav-logo {
             font-size: 1.5rem;
             font-weight: 600;
-            color:#6c63ff;
+            color: #6c63ff;
         }
-
         .nav-links {
+            list-style: none;
             display: flex;
             gap: 1.5rem;
+        }
+        .nav-links li {
+            list-style: none;
         }
         .nav-links a {
             color: #ddd;
@@ -70,11 +70,26 @@
         .nav-links a:hover {
             color: #6c63ff;
         }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #ddd;
+            cursor: pointer;
+        }
 
-        /* Hero Section */
         .dinetrack-hero {
             background: url("assets/image3.png") center/cover no-repeat;
             padding: 3.5rem 1rem;
+            position: relative;
+        }
+        .dinetrack-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(20, 20, 43, 0.6);
+            z-index: 0;
         }
         .dinetrack-hero-container {
             max-width: 1200px;
@@ -87,16 +102,10 @@
             position: relative;
             z-index: 1;
         }
-        .dinetrack-hero::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(20, 20, 43, 0.6);
-            z-index: 0;
-        }
 
         .hero-text-block {
             flex: 1;
+            text-align: center;
         }
         .hero-text-block h1 {
             font-size: 2.5rem;
@@ -106,7 +115,7 @@
         .hero-subtitle {
             font-size: 1.1rem;
             margin-bottom: 1.5rem;
-            color: #ccc;
+            color: #eee;
             line-height: 1.5;
         }
         .btn-hero {
@@ -117,12 +126,12 @@
             border-radius: 4px;
             font-weight: 600;
             transition: background-color 0.3s;
+            margin: 0.5rem;
         }
         .btn-hero:hover {
             background-color: #5b55d1;
         }
 
-        /* Hero Slider Container */
         .hero-slider {
             flex: 1;
             position: relative;
@@ -179,6 +188,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transform: translateY(-50%);
+            z-index: 2;
         }
         .prev-btn {
             left: 90px;
@@ -199,7 +210,7 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: #555;
+            background: rgba(255,255,255,0.6);
             cursor: pointer;
             transition: background 0.3s;
         }
@@ -207,7 +218,6 @@
             background: #fff;
         }
 
-        /* Responsive for Hero */
         @media (max-width: 992px) {
             .dinetrack-hero-container {
                 flex-direction: column;
@@ -220,16 +230,14 @@
                 order: 1;
                 margin-bottom: 2rem;
             }
-            .arrow-btn {
+            .prev-btn {
                 left: 10px !important;
             }
             .next-btn {
-                left: auto !important;
                 right: 10px !important;
             }
         }
 
-        /* Technologies Used */
         .dinetrack-tech {
             background: #14142b;
             padding: 4rem 1rem;
@@ -258,12 +266,6 @@
             text-align: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
-        /* ICON COLORS OVERRIDDEN TO REAL ONES */
-        /* Java: #5382A1, SQLite: #003B57, Google Maps: #EA4335, Android: #3DDC84 */
-        .tech-item i {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
         .tech-item i.fa-java {
             color: #5382A1;
         }
@@ -276,7 +278,10 @@
         .tech-item i.fa-android {
             color: #3DDC84;
         }
-
+        .tech-item i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
         .tech-item h4 {
             font-size: 1.1rem;
             font-weight: 600;
@@ -288,7 +293,6 @@
             line-height: 1.4;
         }
 
-        /* LUXURY KEY FEATURES SECTION (NEW) */
         .modern-features-section {
             position: relative;
             padding: 1.5rem 1rem;
@@ -311,7 +315,6 @@
             margin-bottom: 2.5rem;
         }
         .feature-icon-area {
-            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -356,8 +359,15 @@
             color: #ccc;
             line-height: 1.5;
         }
+        @media (max-width: 768px) {
+            .feature-row {
+                flex-direction: column;
+            }
+            .feature-line {
+                display: none;
+            }
+        }
 
-        /* PROJECT IMPACT SECTION */
         .modern-impact-section {
             padding: 2.5rem 1rem;
             background: linear-gradient(135deg, #201f35, #131225);
@@ -389,7 +399,6 @@
             margin: 0;
         }
 
-        /* Footer */
         .footer {
             background: #0d0d14;
             text-align: center;
@@ -397,42 +406,52 @@
             color: #999;
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
         }
-        /* Responsive adjustments for the feature rows */
+
         @media (max-width: 768px) {
-            .feature-row {
-                flex-direction: row;
-                gap: 1rem;
+            .nav-toggle {
+                display: block;
             }
-            .feature-icon-circle {
-                margin-bottom: 1rem;
+            .nav-links {
+                position: absolute;
+                top: 64px;
+                right: 0;
+                background: radial-gradient(circle, #23233d, #1a1a2e);
+                flex-direction: column;
+                width: 200px;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             }
-            .feature-line {
-                display: none;
+            .nav-links li {
+                margin: 1rem 0;
+                text-align: right;
+                padding-right: 1rem;
+            }
+            .nav-links.open {
+                transform: translateX(0);
             }
         }
     </style>
 </head>
 <body>
 
-<!-- Navbar -->
 <header class="navbar">
     <div class="nav-container">
         <div class="nav-logo">Mobina Zargary</div>
+        <button class="nav-toggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
         <nav>
             <ul class="nav-links">
                 <li><a href="index.html#home">Home</a></li>
                 <li><a href="index.html#about-lux">About</a></li>
                 <li><a href="index.html#projects">Projects</a></li>
-                <!-- Link to Contact section -->
                 <li><a href="index.html#contact-lux">Contact</a></li>
             </ul>
         </nav>
     </div>
 </header>
-<!-- HERO SECTION with sliding phone mockup & bullet pagination -->
+
 <section class="dinetrack-hero">
     <div class="dinetrack-hero-container">
-        <!-- Left: Summary -->
         <div class="hero-text-block">
             <h1>DineTrack</h1>
             <p class="hero-subtitle">
@@ -446,357 +465,144 @@
             <a href="https://youtu.be/iXvHV6hpLQs" class="btn-hero">Watch Video</a>
             <a href="https://github.com/melinabehzadi/G69-DineTrack.git" class="btn-hero">Github Repo</a>
         </div>
-
-        <!-- Right: phone slider -->
         <div class="hero-slider">
             <div class="phone-frame">
                 <div class="slides-container">
-                    <!-- Slide 1 (active by default) -->
-                    <div class="slide active">
-                        <!-- Replace with your actual screenshot -->
-                        <img src="assets/Landing_Page.png" alt="Screen 1" />
-                    </div>
-                    <!-- Slide 2 -->
-                    <div class="slide">
-                        <img src="assets/Favourites_Page.png" alt="Screen 2" />
-                    </div>
-                    <!-- Slide 3 -->
-                    <div class="slide">
-                        <img src="assets/Add_Restaurant_Page.png" alt="Screen 3" />
-                    </div>
-                    <div class="slide">
-                        <img src="assets/Filter_Tab%20(1).png" alt="Screen 4" />
-
-                    </div>
-                    <div class="slide">
-                        <img src="assets/Restaurant_Details_Page.png" alt="Screen 5" />
-
-                    </div>
-                    <div class="slide">
-                        <img src="assets/Team_About_Page%20(1).png" alt="Screen 6" />
-
-                    </div>
+                    <div class="slide active"><img src="assets/Landing_Page.png" alt="Screen 1" /></div>
+                    <div class="slide"><img src="assets/Favourites_Page.png" alt="Screen 2" /></div>
+                    <div class="slide"><img src="assets/Add_Restaurant_Page.png" alt="Screen 3" /></div>
+                    <div class="slide"><img src="assets/Filter_Tab%20(1).png" alt="Screen 4" /></div>
+                    <div class="slide"><img src="assets/Restaurant_Details_Page.png" alt="Screen 5" /></div>
+                    <div class="slide"><img src="assets/Team_About_Page%20(1).png" alt="Screen 6" /></div>
                 </div>
-
-                <!-- Dots pagination at bottom of phone -->
                 <div class="slider-dots">
                     <span class="dot active-dot"></span>
                     <span class="dot"></span>
                     <span class="dot"></span>
                     <span class="dot"></span>
                     <span class="dot"></span>
+                    <span class="dot"></span>
                 </div>
             </div>
-
-            <!-- Arrows (closer to phone) -->
             <button class="arrow-btn prev-btn">&lt;</button>
             <button class="arrow-btn next-btn">&gt;</button>
         </div>
     </div>
 </section>
 
-<!-- TECHNOLOGIES USED -->
 <section class="dinetrack-tech">
     <div class="tech-container">
         <h2>Technologies Used</h2>
         <div class="tech-grid">
-            <!-- Java icon color changed -->
-            <div class="tech-item">
-                <i class="fab fa-java" style="color: #5382A1;"></i>
-                <h4>Java</h4>
-                <p>
-                    Core language ensuring reliability and performance for Android
-                    functionality.
-                </p>
-            </div>
-            <!-- SQLite icon color changed -->
-            <div class="tech-item">
-                <i class="fas fa-database" style="color: #003B57;"></i>
-                <h4>SQLite</h4>
-                <p>
-                    Local database to store user data (restaurants, ratings, tags)
-                    securely and efficiently.
-                </p>
-            </div>
-            <!-- Google Maps icon color changed -->
-            <div class="tech-item">
-                <i class="fas fa-map-marker-alt" style="color: #EA4335;"></i>
-                <h4>Google Maps</h4>
-                <p>
-                    Integrated map views for real-time location insights and
-                    turn-by-turn navigation.
-                </p>
-            </div>
-            <!-- Android Studio icon color changed -->
-            <div class="tech-item">
-                <i class="fab fa-android" style="color: #3DDC84;"></i>
-                <h4>Android Studio</h4>
-                <p>
-                    Comprehensive IDE for designing the UI, debugging, and
-                    performance optimization.
-                </p>
-            </div>
+            <div class="tech-item"><i class="fab fa-java"></i><h4>Java</h4><p>Core language ensuring reliability and performance for Android functionality.</p></div>
+            <div class="tech-item"><i class="fas fa-database"></i><h4>SQLite</h4><p>Local database to store user data securely and efficiently.</p></div>
+            <div class="tech-item"><i class="fas fa-map-marker-alt"></i><h4>Google Maps</h4><p>Integrated map views for real-time location insights.</p></div>
+            <div class="tech-item"><i class="fab fa-android"></i><h4>Android Studio</h4><p>IDE for designing UI, debugging, and performance optimization.</p></div>
         </div>
     </div>
 </section>
 
-<!-- NEW LUXURY KEY FEATURES SECTION -->
 <section id="features-lux" class="modern-features-section">
     <div class="modern-features-container">
         <h2 class="modern-features-title">Key Features</h2>
-
-        <!-- Feature Row 1 -->
         <div class="feature-row">
             <div class="feature-icon-area">
-                <div class="feature-icon-circle">
-                    <i class="fas fa-utensils"></i>
-                </div>
+                <div class="feature-icon-circle"><i class="fas fa-utensils"></i></div>
                 <div class="feature-line"></div>
             </div>
             <div class="feature-content">
                 <h3>Restaurant Data Management</h3>
-                <p>
-                    Add, edit, and remove entries with name, address, tags, rating,
-                    and more—keeping your dining database organized.
-                </p>
+                <p>Add, edit, and remove entries with name, address, tags, rating, and more.</p>
             </div>
         </div>
-
-        <!-- Feature Row 2 -->
         <div class="feature-row">
             <div class="feature-icon-area">
-                <div class="feature-icon-circle">
-                    <i class="fas fa-filter"></i>
-                </div>
+                <div class="feature-icon-circle"><i class="fas fa-filter"></i></div>
                 <div class="feature-line"></div>
             </div>
             <div class="feature-content">
                 <h3>Advanced Search &amp; Filtering</h3>
-                <p>
-                    Find the perfect spot using multiple filters (ratings, tags,
-                    distance) and never settle for less than ideal.
-                </p>
+                <p>Find the perfect spot using multiple filters (ratings, tags, distance).</p>
             </div>
         </div>
-
-        <!-- Feature Row 3 -->
         <div class="feature-row">
             <div class="feature-icon-area">
-                <div class="feature-icon-circle">
-                    <i class="fas fa-map"></i>
-                </div>
+                <div class="feature-icon-circle"><i class="fas fa-map"></i></div>
                 <div class="feature-line"></div>
             </div>
             <div class="feature-content">
                 <h3>Map Integration</h3>
-                <p>
-                    Display restaurants on Google Maps with markers and
-                    navigation directions for quick and easy route planning.
-                </p>
+                <p>Display restaurants on Google Maps with markers and navigation directions.</p>
             </div>
         </div>
-
-        <!-- Feature Row 4 -->
         <div class="feature-row">
             <div class="feature-icon-area">
-                <div class="feature-icon-circle">
-                    <i class="fas fa-share-alt"></i>
-                </div>
-                <!-- No line after last item (optional) -->
+                <div class="feature-icon-circle"><i class="fas fa-share-alt"></i></div>
             </div>
             <div class="feature-content">
                 <h3>Share &amp; Collaboration</h3>
-                <p>
-                    Share listings with friends or family; easily export data for
-                    backup or group planning.
-                </p>
+                <p>Share listings with friends or export data for group planning.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- NEW LUXURY PROJECT IMPACT SECTION -->
 <section class="modern-impact-section">
     <div class="modern-impact-container">
         <h2 class="modern-impact-title">Project Impact</h2>
         <div class="modern-impact-content">
-            <p>
-                DineTrack streamlines dining decisions by centralizing restaurant
-                information in a single, intuitive app. The integration of Java,
-                SQLite, and Google Maps fosters a robust, scalable solution for
-                real-time searching and filtering. By offering advanced data
-                management and interactive map features, DineTrack demonstrates
-                a production-ready Android experience—ideal for everyday use
-                or future commercial expansions.
-            </p>
+            <p>DineTrack streamlines dining decisions by centralizing restaurant information in a single, intuitive app. The integration of Java, SQLite, and Google Maps fosters a robust, scalable solution for real-time searching and filtering. By offering advanced data management and interactive map features, DineTrack demonstrates a production-ready Android experience—ideal for everyday use or future commercial expansions.</p>
         </div>
     </div>
 </section>
 
-<!-- MEET THE TEAM SECTION -->
-<section class="team-section" style="
-  background: #1a1a2e;
-  padding: 2rem 1rem;
-  text-align: center;
-">
-    <h2 style="
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-  ">
-        Meet the Team
-    </h2>
-    <p style="
-    font-size: 0.9rem;
-    color: #ccc;
-    max-width: 700px;
-    margin: 0 auto 2rem auto;
-    line-height: 1.4;
-  ">
-        This project was a collaborative effort by our talented team, each
-        contributing specialized skills to bring this platform to life.
+<section class="team-section" style="background: #1a1a2e; padding: 2rem 1rem; text-align: center;">
+    <h2 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem;">Meet the Team</h2>
+    <p style="font-size: 0.9rem; color: #ccc; max-width: 700px; margin: 0 auto 2rem; line-height: 1.4;">
+        This project was a collaborative effort by our talented team, each contributing specialized skills to bring this platform to life.
     </p>
-
-    <div class="team-container" style="
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  ">
-        <!-- Team Member 1 -->
-        <div class="team-card" style="
-      background: linear-gradient(
-            to right,
-            rgba(255, 255, 255, 0.12),
-            rgba(255, 255, 255, 0.06)
-          );
-      backdrop-filter: blur(6px);
-      padding: 0.8rem 1.2rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s;
-      min-width: 120px;
-    ">
-            <p style="
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #fff;
-      ">
-                Mobina Zargary
-            </p>
+    <div class="team-container" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <div class="team-card" style="background: linear-gradient(to right, rgba(255,255,255,0.12), rgba(255,255,255,0.06)); backdrop-filter: blur(6px); padding: 0.8rem 1.2rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform 0.3s; min-width: 120px;">
+            <p style="font-size: 0.9rem; font-weight: 600; color: #fff;">Mobina Zargary</p>
         </div>
-
-        <!-- Team Member 2 -->
-        <div class="team-card" style="
-      background: linear-gradient(
-            to right,
-            rgba(255, 255, 255, 0.12),
-            rgba(255, 255, 255, 0.06)
-          );
-      backdrop-filter: blur(6px);
-      padding: 0.8rem 1.2rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s;
-      min-width: 120px;
-    ">
-            <p style="
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #fff;
-      ">
-                Melina Behzadi Nezhad
-            </p>
+        <div class="team-card" style="background: linear-gradient(to right, rgba(255,255,255,0.12), rgba(255,255,255,0.06)); backdrop-filter: blur(6px); padding: 0.8rem 1.2rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform 0.3s; min-width: 120px;">
+            <p style="font-size: 0.9rem; font-weight: 600; color: #fff;">Melina Behzadi Nezhad</p>
         </div>
-
-        <!-- Team Member 3 -->
-        <div class="team-card" style="
-      background: linear-gradient(
-            to right,
-            rgba(255, 255, 255, 0.12),
-            rgba(255, 255, 255, 0.06)
-          );
-      backdrop-filter: blur(6px);
-      padding: 0.8rem 1.2rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s;
-      min-width: 120px;
-    ">
-            <p style="
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #fff;
-      ">
-                Oscar Piedrasanta Diaz
-            </p>
+        <div class="team-card" style="background: linear-gradient(to right, rgba(255,255,255,0.12), rgba(255,255,255,0.06)); backdrop-filter: blur(6px); padding: 0.8rem 1.2rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform 0.3s; min-width: 120px;">
+            <p style="font-size: 0.9rem; font-weight: 600; color: #fff;">Oscar Piedrasanta Diaz</p>
         </div>
-
-        <!-- Team Member 4 -->
-        <div class="team-card" style="
-      background: linear-gradient(
-            to right,
-            rgba(255, 255, 255, 0.12),
-            rgba(255, 255, 255, 0.06)
-          );
-      backdrop-filter: blur(6px);
-      padding: 0.8rem 1.2rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s;
-      min-width: 120px;
-    ">
-            <p style="
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #fff;
-      ">
-                Valeria Arce
-            </p>
+        <div class="team-card" style="background: linear-gradient(to right, rgba(255,255,255,0.12), rgba(255,255,255,0.06)); backdrop-filter: blur(6px); padding: 0.8rem 1.2rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform 0.3s; min-width: 120px;">
+            <p style="font-size: 0.9rem; font-weight: 600; color: #fff;">Valeria Arce</p>
         </div>
     </div>
 </section>
 
-
-<!-- FOOTER -->
 <footer class="footer">
     <p>&copy; <span id="year"></span> Mobina Zargary. All rights reserved.</p>
 </footer>
 
-<!-- JavaScript for year, slider, and dots -->
 <script>
-    // Footer year
-    const yearSpan = document.getElementById("year");
-    if (yearSpan) {
-        yearSpan.textContent = new Date().getFullYear();
-    }
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Sliding phone mockup
+    const toggle = document.querySelector('.nav-toggle');
+    const links = document.querySelector('.nav-links');
+    toggle.addEventListener('click', () => {
+        links.classList.toggle('open');
+    });
+
     const slides = document.querySelectorAll(".slide");
     const dots = document.querySelectorAll(".dot");
     let currentSlide = 0;
-
     const prevBtn = document.querySelector(".prev-btn");
     const nextBtn = document.querySelector(".next-btn");
 
-    function showSlide(index) {
-        // Update slides
-        slides.forEach((slide, i) => {
-            slide.classList.remove("active");
-            if (i === index) {
-                slide.classList.add("active");
-            }
-        });
-        // Update dots
-        dots.forEach((dot, i) => {
-            dot.classList.remove("active-dot");
-            if (i === index) {
-                dot.classList.add("active-dot");
-            }
+    function showSlide(i) {
+        slides.forEach((s, idx) => {
+            s.classList.toggle("active", idx === i);
+            dots[idx].classList.toggle("active-dot", idx === i);
         });
     }
 
-    // Next/Prev arrow logic
     prevBtn.addEventListener("click", () => {
         currentSlide = (currentSlide - 1 + slides.length) % slides.length;
         showSlide(currentSlide);
@@ -805,11 +611,9 @@
         currentSlide = (currentSlide + 1) % slides.length;
         showSlide(currentSlide);
     });
-
-    // Dot clicks
-    dots.forEach((dot, i) => {
+    dots.forEach((dot, idx) => {
         dot.addEventListener("click", () => {
-            currentSlide = i;
+            currentSlide = idx;
             showSlide(currentSlide);
         });
     });
